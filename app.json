@@ -11,9 +11,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
@@ -21,10 +19,27 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.anonymous.barbershopmobile"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./src/assets/fonts/Amithen/Amithen.otf",
+            "./src/assets/fonts/RNZ/RNSSanz-Bold.otf",
+            "./src/assets/fonts/RNZ/RNSSanz-ExtraBold.otf",
+            "./src/assets/fonts/RNZ/RNSSanz-Light.otf",
+            "./src/assets/fonts/RNZ/RNSSanz-Medium.otf",
+            "./src/assets/fonts/RNZ/RNSSanz-SemiBold.otf",
+            "./src/assets/fonts/RNZ/RNSSanz-Normal.otf"
+          ]
+        }
+      ]
+    ]
   }
 }
