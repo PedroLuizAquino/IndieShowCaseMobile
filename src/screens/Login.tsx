@@ -7,12 +7,7 @@ import {
   VStack,
 } from 'native-base';
 import bgLogin from '../assets/images/bgLogin.png';
-import {
-  ImageBackground,
-  TouchableOpacity,
-  KeyboardAvoidingView,
-  Dimensions,
-} from 'react-native';
+import { ImageBackground, TouchableOpacity, Dimensions } from 'react-native';
 import { InputEstilizado } from '../components/InputEstilizado';
 import { ButtonEstilizado } from '../components/ButtonEstilizado';
 import { useFonts } from 'expo-font';
@@ -43,7 +38,7 @@ export default function Login({ navigation }) {
             color={'white'}
             fontSize={'2xl'}
             textAlign={'center'}
-            mt={18}
+            mt={24}
             fontFamily={'Amithen'}
           >
             Desde{'      '}2021
@@ -60,14 +55,20 @@ export default function Login({ navigation }) {
             BarberShop
           </Text>
 
-          <Box mt={72}>
+          <Box mt={64}>
             <FormControl>
-              <InputEstilizado placeholder="E-mail" />
-              <InputEstilizado placeholder="Senha" type="password" />
+              <InputEstilizado placeholder="E-mail" mt={4} />
+              <InputEstilizado placeholder="Senha" type="password" mt={4} />
             </FormControl>
           </Box>
 
-          <ButtonEstilizado texto="Entrar" mt={5} />
+          <ButtonEstilizado
+            texto="Entrar"
+            mt={5}
+            onPress={() => {
+              navigation.navigate('Tabs');
+            }}
+          />
           <Box
             w={'100%'}
             flexDirection={'row'}

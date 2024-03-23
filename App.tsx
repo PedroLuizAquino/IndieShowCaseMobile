@@ -4,8 +4,8 @@ import Rotas from './src/components/Rotas';
 export default function App() {
   return (
     <NativeBaseProvider theme={theme}>
-      <StatusBar backgroundColor={theme.colors.black} />
-      <Rotas>
+      <StatusBar backgroundColor={'black'} />
+      <Rotas />
     </NativeBaseProvider>
   );
 }

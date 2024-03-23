@@ -4,17 +4,17 @@ interface InputProps extends IInputProps {
   placeholder?: string;
 }
 
-export function InputEstilizado({ placeholder, ...rest }: InputProps) {
+export function InputOutline({ placeholder, ...rest }: InputProps) {
   return (
     <>
       <Input
-        variant={'rounded'}
+        variant={'outline'}
         placeholder={placeholder}
         size="md"
         w="80%"
-        bgColor="white"
         shadow={3}
-        textAlign={'center'}
+        borderColor={'#E29C31'}
+        rounded={'full'}
         {...rest}
       />
     </>
