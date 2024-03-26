@@ -109,7 +109,7 @@ export default function Agendamento({ navigation }) {
           <Center>
             <ButtonEstilizado
               texto="Proximo"
-              mb={12}
+              mb={32}
               onPress={() => {
                 avancarSecao();
               }}

@@ -83,7 +83,7 @@ export default function Home() {
         mt={4}
         borderRadius={'xl'}
         justifyContent={'center'}
-        mb={12}
+        mb={32}
       >
         <Text color={'white'} textAlign={'center'}>
           Aqui vai o carrosel de profissionais
