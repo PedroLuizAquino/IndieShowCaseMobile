@@ -1,43 +1,51 @@
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import React, { useEffect, useRef } from 'react';
-import { SafeAreaView, StyleSheet, TouchableOpacity } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import * as Animatable from 'react-native-animatable';
-import Home from './Home';
-import Agendamento from './Agendamento';
-import Galeria from './Galeria';
-import Perfil from './Perfil';
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import React, { useEffect, useRef } from "react";
+import {
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import * as Animatable from "react-native-animatable";
+import Home from "./Home";
+import Agendamento from "./Agendamento";
+import Galeria from "./Galeria";
+import Perfil from "./Perfil";
 
 const TabArr = [
   {
-    route: 'Home',
-    label: 'Home',
-    activeIcon: 'home',
-    inActiveIcon: 'home-outline',
+    route: "Home",
+    label: "Home",
+    icon: "home",
     component: Home,
+    color: "#E29C31",
+    alphaClr: "black",
   },
   {
-    route: 'Agendamento',
-    label: 'Agendamento',
-
-    activeIcon: 'calendar',
-    inActiveIcon: 'calendar-outline',
+    route: "Agendamento",
+    label: "Agendar",
+    icon: "calendar",
     component: Agendamento,
+    color: "#E29C31",
+    alphaClr: "black",
   },
   {
-    route: 'Galeria',
-    label: 'Galeria',
-
-    activeIcon: 'image',
-    inActiveIcon: 'image-outline',
+    route: "Galeria",
+    label: "Galeria",
+    icon: "image",
     component: Galeria,
+    color: "#E29C31",
+    alphaClr: "black",
   },
   {
-    route: 'Perfil',
-    label: 'Perfil',
-    activeIcon: 'person',
-    inActiveIcon: 'person-outline',
+    route: "Perfil",
+    label: "Perfil",
+    icon: "person",
     component: Perfil,
+    color: "#E29C31",
+    alphaClr: "black",
   },
 ];
 
@@ -47,18 +55,16 @@ const TabButton = (props) => {
   const { item, onPress, accessibilityState } = props;
   const focused = accessibilityState.selected;
   const viewRef = useRef(null);
+  const textViewRef = useRef(null);
 
   useEffect(() => {
     if (focused) {
-      viewRef.current.animate({
-        0: { scale: 0.5, rotate: '0deg' },
-        1: { scale: 1.5, rotate: '360deg' },
-      });
+      // 0.3: { scale: .7 }, 0.5: { scale: .3 }, 0.8: { scale: .7 },
+      viewRef.current.animate({ 0: { scale: 0 }, 1: { scale: 1 } });
+      textViewRef.current.animate({ 0: { scale: 0 }, 1: { scale: 1 } });
     } else {
-      viewRef.current.animate({
-        0: { scale: 1.5, rotate: '360deg' },
-        1: { scale: 1, rotate: '0deg' },
-      });
+      viewRef.current.animate({ 0: { scale: 1 }, 1: { scale: 0 } });
+      textViewRef.current.animate({ 0: { scale: 1 }, 1: { scale: 0 } });
     }
   }, [focused]);
 
@@ -66,20 +72,58 @@ const TabButton = (props) => {
     <TouchableOpacity
       onPress={onPress}
       activeOpacity={1}
-      style={[styles.container, { top: 0 }]}
+      style={[styles.container, { flex: focused ? 1 : 0.65 }]}
     >
-      <Animatable.View ref={viewRef} duration={1000}>
-        <Ionicons
-          name={focused ? item.activeIcon : item.inActiveIcon}
-          color={focused ? '#E29C31' : 'white'}
-          size={20}
+      <View>
+        <Animatable.View
+          ref={viewRef}
+          style={[
+            StyleSheet.absoluteFillObject,
+            { backgroundColor: item.color, borderRadius: 16 },
+          ]}
         />
-      </Animatable.View>
+        <View style={[styles.btn]}>
+          {focused ? (
+            <></>
+          ) : (
+            <View style={[styles.btn]}>
+              <Ionicons
+                name={item.icon}
+                color={focused ? "black" : "#E29C31"}
+                size={20}
+              />
+            </View>
+          )}
+
+          <Animatable.View ref={textViewRef}>
+            {focused && (
+              <View style={styles.btn2}>
+                <Ionicons
+                  name={item.icon}
+                  color={focused ? "black" : "#E29C31"}
+                  size={18}
+                />
+                <Text
+                  style={{
+                    color: "black",
+                    paddingHorizontal: 8,
+                    fontWeight: "bold",
+                    fontSize: 12,
+                    textTransform: "uppercase",
+                  }}
+                >
+                  {item.label}
+                </Text>
+              </View>
+            )}
+          </Animatable.View>
+        </View>
+      </View>
     </TouchableOpacity>
   );
 };
 
-export default function AnimTab1() {
+export default function Menu() {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <Tab.Navigator
@@ -87,14 +131,12 @@ export default function AnimTab1() {
           headerShown: false,
           tabBarStyle: {
             height: 60,
-            position: 'absolute',
+            position: "absolute",
             margin: 16,
             borderRadius: 16,
-            justifyContent: 'center',
-            alignItems: 'center',
-            backgroundColor: '#1D1D1D',
-            borderColor: 'black',
-            borderWidth: 2,
+            backgroundColor: "#1D1D1D",
+            borderColor: "black",
+            borderWidth: 1,
           },
         }}
       >
@@ -118,9 +160,21 @@ export default function AnimTab1() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     height: 60,
+  },
+  btn: {
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 8,
+    borderRadius: 16,
+  },
+  btn2: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 1,
+    paddingVertical: 2,
+    borderRadius: 16,
   },
 });
