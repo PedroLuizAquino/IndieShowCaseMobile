@@ -136,7 +136,7 @@ export default function Menu() {
             borderRadius: 16,
             backgroundColor: "#1D1D1D",
             borderColor: "black",
-            borderWidth: 1,
+            borderWidth: 2,
           },
         }}
       >

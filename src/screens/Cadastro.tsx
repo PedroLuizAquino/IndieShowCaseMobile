@@ -3,93 +3,109 @@ import {
   Box,
   Center,
   FormControl,
+  ScrollView,
   Spacer,
   Text,
   VStack,
-} from 'native-base';
-import { TouchableOpacity } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import { ButtonEstilizado } from '../components/ButtonEstilizado';
-import { InputOutline } from '../components/InputOutline';
+} from "native-base";
+import { TouchableOpacity } from "react-native";
+import { ButtonEstilizado } from "../components/ButtonEstilizado";
+import { InputOutline } from "../components/InputOutline";
 
 export default function Cadastro({ navigation }) {
   return (
-    <VStack flex={1} bg={'#1D1D1D'} justifyContent={'center'}>
+    <ScrollView flex={1} bg={"#1D1D1D"}>
       <Text
         fontSize={36}
-        color={'#E29C31'}
-        textAlign={'center'}
-        fontWeight={'bold'}
+        color={"#E29C31"}
+        textAlign={"center"}
+        fontWeight={"bold"}
+        mt={5}
       >
         Cadastrar
       </Text>
-      <FormControl mt={4}>
-        <Center>
-          <Text color={'white'} ml={4} fontWeight={'bold'}>
+      <FormControl mt={4} alignItems={"center"}>
+        <Box>
+          <Text color={"white"} fontWeight={"bold"} fontSize={16}>
             Nome
           </Text>
-          <InputOutline placeholder="Insira seu nome completo..." mt={1} />
-        </Center>
-        <Center mt={4}>
-          <Text color={'white'} ml={4} fontWeight={'bold'}>
+          <InputOutline placeholder="Insira seu nome completo..." mt={3} />
+        </Box>
+        <Box mt={4}>
+          <Text color={"white"} fontWeight={"bold"} fontSize={16}>
             Email
           </Text>
-          <InputOutline placeholder="Insira seu e-mail..." mt={1} />
-        </Center>
+          <InputOutline placeholder="Insira seu e-mail..." mt={3} />
+        </Box>
 
         <Box mt={4}>
-          <Text color={'white'} ml={9}>
+          <Text color={"white"} fontSize={16}>
             Foto de perfil
           </Text>
-          <Text color={'white'} ml={9}>
-            Envie um arquivo do seu dispositivo
-          </Text>
-          <Box flexDirection={'row'} mt={2} px={12}>
+          <Text color={"gray.500"}>Envie um arquivo do seu dispositivo</Text>
+          <Box flexDirection={"row"} mt={2}>
             <Avatar
-              size={'lg'}
-              source={{ uri: 'https://github.com/yohan-araujo.png' }}
+              size={"xl"}
+              source={{ uri: "https://github.com/yohan-araujo.png" }}
+              borderWidth={1}
+              borderColor={"#E29C31"}
+              mt={3}
             />
             <Spacer />
-            <ButtonEstilizado texto="Enviar Foto" mt={1} h={12} />
+            <ButtonEstilizado texto="Enviar" mt={10} h={12} />
           </Box>
         </Box>
-        <Center mt={4}>
-          <Text color={'white'} ml={4} fontWeight={'bold'}>
+        <Box mt={4}>
+          <Text color={"white"} fontWeight={"bold"} fontSize={16}>
             Telefone
           </Text>
-          <InputOutline placeholder="(00)00000-0000" mt={1} />
-        </Center>
-        <Center mt={4}>
-          <Text color={'white'} ml={4} fontWeight={'bold'}>
+          <InputOutline placeholder="(00)00000-0000" mt={3} />
+        </Box>
+        <Box mt={4}>
+          <Text color={"white"} fontWeight={"bold"} fontSize={16}>
             Senha
           </Text>
-          <InputOutline placeholder="Insira sua senha..." mt={1} />
-        </Center>
-        <Center mt={4}>
-          <Text color={'white'} ml={4} fontWeight={'bold'}>
+          <InputOutline
+            placeholder="Insira sua senha..."
+            mt={3}
+            tipo="password"
+          />
+        </Box>
+        <Box mt={4}>
+          <Text color={"white"} fontWeight={"bold"} fontSize={16}>
             Confirmar a Senha
           </Text>
-          <InputOutline placeholder="Insira sua senha novamente..." mt={1} />
-        </Center>
+          <InputOutline
+            placeholder="Insira sua senha novamente..."
+            mt={3}
+            tipo="password"
+          />
+        </Box>
       </FormControl>
-      <Center mt={4}>
+      <Center mt={10}>
         <ButtonEstilizado texto="Cadastrar" />
       </Center>
-      <Box w={'100%'} flexDirection={'row'} justifyContent={'center'} mt={2}>
-        <Text color={'white'} underline>
-          Ja possui conta?{' '}
+      <Box
+        w={"100%"}
+        flexDirection={"row"}
+        justifyContent={"center"}
+        mt={6}
+        mb={12}
+      >
+        <Text color={"white"} underline>
+          Já possui conta?{" "}
         </Text>
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate('Cadastro');
+            navigation.navigate("Login");
           }}
         >
-          <Text color={'yellow.500'} underline>
-            {' '}
+          <Text color={"yellow.500"} underline>
+            {" "}
             Entrar
           </Text>
         </TouchableOpacity>
       </Box>
-    </VStack>
+    </ScrollView>
   );
 }
