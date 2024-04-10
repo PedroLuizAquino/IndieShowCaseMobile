@@ -13,6 +13,7 @@ import Home from "./Home";
 import Agendamento from "./Agendamento";
 import Galeria from "./Galeria";
 import Perfil from "./Perfil";
+import { useFonts } from "expo-font";
 
 const TabArr = [
   {
@@ -56,6 +57,9 @@ const TabButton = (props) => {
   const focused = accessibilityState.selected;
   const viewRef = useRef(null);
   const textViewRef = useRef(null);
+  const [fontsCarregadas, fontsError] = useFonts({
+    NeohellenicBold: require("../assets/fonts/Neohellenic/GFSNeohellenic-Bold.ttf"),
+  });
 
   useEffect(() => {
     if (focused) {
@@ -107,9 +111,9 @@ const TabButton = (props) => {
                   style={{
                     color: "black",
                     paddingHorizontal: 8,
-                    fontWeight: "bold",
-                    fontSize: 12,
+                    fontSize: 16,
                     textTransform: "uppercase",
+                    fontFamily: "NeohellenicBold",
                   }}
                 >
                   {item.label}

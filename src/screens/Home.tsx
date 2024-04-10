@@ -7,9 +7,12 @@ import {
   Divider,
   ScrollView,
   Image,
+  Row,
 } from "native-base";
 import imgCarrosel from "../assets/images/imgCarroselHome.png";
 import { useFonts } from "expo-font";
+import CardServico from "../components/CardServico";
+import CardProfissional from "../components/CardProfissional";
 
 export default function Home() {
   const [fontsCarregadas, fontsError] = useFonts({
@@ -52,7 +55,7 @@ export default function Home() {
           source={imgCarrosel}
           alt="foto do carrosel"
           h={125}
-          borderRadius={"xl"}
+          borderRadius={"2xl"}
         />
       </Box>
       <Text color={"white"} textAlign={"center"}>
@@ -73,16 +76,11 @@ export default function Home() {
       >
         Serviços
       </Text>
-      <Box
-        backgroundColor={"black"}
-        h={150}
-        mt={4}
-        borderRadius={"xl"}
-        justifyContent={"center"}
-      >
-        <Text color={"white"} textAlign={"center"}>
-          Aqui vai o carrosel de servicos
-        </Text>
+
+      <Box flexDirection={"row"}>
+        <CardServico />
+        <Box mx={2}></Box>
+        <CardServico />
       </Box>
 
       <Text
@@ -93,17 +91,10 @@ export default function Home() {
       >
         Profissionais
       </Text>
-      <Box
-        backgroundColor={"black"}
-        h={250}
-        mt={4}
-        borderRadius={"xl"}
-        justifyContent={"center"}
-        mb={32}
-      >
-        <Text color={"white"} textAlign={"center"}>
-          Aqui vai o carrosel de profissionais
-        </Text>
+      <Box flexDirection={"row"}>
+        <CardProfissional />
+        <Box mx={2}></Box>
+        <CardProfissional />
       </Box>
     </ScrollView>
   );

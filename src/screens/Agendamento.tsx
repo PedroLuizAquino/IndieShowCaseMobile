@@ -12,6 +12,8 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import { ButtonEstilizado } from "../components/ButtonEstilizado";
 import { useState } from "react";
 import { TouchableOpacity } from "react-native";
+import CardProfissional from "../components/CardProfissional";
+import CardServico from "../components/CardServico";
 
 export default function Agendamento({ navigation }) {
   const [numSecao, setNumSecao] = useState(0);
@@ -73,35 +75,33 @@ export default function Agendamento({ navigation }) {
           <Text color={"white"} mt={2} fontSize={18}>
             Escolha seu serviço e profissional!
           </Text>
-          <Text color={"#E29C31"} mt={8} fontSize={24} fontWeight={"bold"}>
-            Serviços:
-          </Text>
-          <Box
-            backgroundColor={"black"}
-            h={150}
-            mt={4}
-            borderRadius={"xl"}
-            justifyContent={"center"}
+          <Text
+            color={"#E29C31"}
+            mt={8}
+            fontSize={20}
+            fontFamily={"NeohellenicBold"}
           >
-            <Text color={"white"} textAlign={"center"}>
-              Aqui vai o carrosel de servicos
-            </Text>
+            Serviços
+          </Text>
+
+          <Box flexDirection={"row"}>
+            <CardServico />
+            <Box mx={2}></Box>
+            <CardServico />
           </Box>
 
-          <Text color={"#E29C31"} mt={8} fontSize={24} fontWeight={"bold"}>
-            Profissionais:
-          </Text>
-          <Box
-            backgroundColor={"black"}
-            h={250}
-            mt={4}
-            borderRadius={"xl"}
-            justifyContent={"center"}
-            mb={12}
+          <Text
+            color={"#E29C31"}
+            mt={8}
+            fontSize={20}
+            fontFamily={"NeohellenicBold"}
           >
-            <Text color={"white"} textAlign={"center"}>
-              Aqui vai o carrosel de profissionais
-            </Text>
+            Profissionais
+          </Text>
+          <Box flexDirection={"row"}>
+            <CardProfissional />
+            <Box mx={2}></Box>
+            <CardProfissional />
           </Box>
 
           <Center>
