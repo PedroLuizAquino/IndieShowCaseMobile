@@ -9,8 +9,8 @@ import {
   VStack,
 } from "native-base";
 import { TouchableOpacity } from "react-native";
-import { ButtonEstilizado } from "../components/ButtonEstilizado";
 import { InputOutline } from "../components/InputOutline";
+import { ButtonEstilizado } from "../components/ButtonEstilizado";
 
 export default function Cadastro({ navigation }) {
   return (

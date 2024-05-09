@@ -6,7 +6,7 @@ import Menu from "../screens/Menu";
 
 const Tab = createNativeStackNavigator();
 
-export default function Rotas() {
+export default function Router() {
   return (
     <NavigationContainer>
       <Tab.Navigator>
