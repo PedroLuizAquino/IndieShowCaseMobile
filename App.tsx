@@ -1,5 +1,5 @@
 import { NativeBaseProvider, StatusBar, theme } from "native-base";
-import Rotas from "./src/components/Rotas";
+import Rotas from "./src/components/Router";
 
 export default function App() {
   return (

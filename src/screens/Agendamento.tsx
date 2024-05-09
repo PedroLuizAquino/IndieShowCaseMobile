@@ -9,11 +9,11 @@ import {
   Center,
 } from "native-base";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { ButtonEstilizado } from "../components/ButtonEstilizado";
 import { useState } from "react";
 import { TouchableOpacity } from "react-native";
-import CardProfissional from "../components/CardProfissional";
 import CardServico from "../components/CardServico";
+import CardProfissional from "../components/CardProfissional";
+import { ButtonEstilizado } from "../components/ButtonEstilizado";
 
 export default function Agendamento({ navigation }) {
   const [numSecao, setNumSecao] = useState(0);
@@ -53,12 +53,12 @@ export default function Agendamento({ navigation }) {
       {numSecao === 0 && (
         <>
           <VStack flexDirection={"row"} mt={4}>
-            <Box mt={5}>
+            <Box mt={2}>
               <Text
                 color={"#E29C31"}
                 fontSize={28}
-                fontWeight={"bold"}
                 textTransform={"uppercase"}
+                fontFamily={"NeohellenicBold"}
               >
                 Agendamento
               </Text>
@@ -72,7 +72,12 @@ export default function Agendamento({ navigation }) {
             </Box>
           </VStack>
           <Divider mt={15} />
-          <Text color={"white"} mt={2} fontSize={18}>
+          <Text
+            color={"white"}
+            mt={2}
+            fontSize={18}
+            fontFamily={"NeohellenicRegular"}
+          >
             Escolha seu serviço e profissional!
           </Text>
           <Text
