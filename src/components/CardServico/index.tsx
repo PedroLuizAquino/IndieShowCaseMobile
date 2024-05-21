@@ -1,7 +1,12 @@
 import { useFonts } from "expo-font";
 import { Box, Image, Text } from "native-base";
+import IServico from "../../@types/IServico";
 
-export default function CardServico() {
+interface CardServico {
+  servico: IServico;
+}
+
+export default function CardServico({ ser_id, ser_tipo, ser_preco }: IServico) {
   const [fontsCarregadas, fontsError] = useFonts({
     NeohellenicRegular: require("../../assets/fonts/Neohellenic/GFSNeohellenic-Regular.ttf"),
     NeohellenicBold: require("../../assets/fonts/Neohellenic/GFSNeohellenic-Bold.ttf"),
@@ -15,6 +20,7 @@ export default function CardServico() {
       mt={4}
       borderRadius={"2xl"}
       justifyContent={"center"}
+      key={ser_id}
     >
       <Image
         h={100}
@@ -31,14 +37,14 @@ export default function CardServico() {
           fontFamily={"NeohellenicBold"}
           fontSize={18}
         >
-          Corte de cabelo
+          {ser_tipo}
         </Text>
         <Text
           color={"white"}
           textAlign={"center"}
           fontFamily={"NeohellenicRegular"}
         >
-          Preço: R$ XX,XXX
+          Preço: R${ser_preco.toFixed(2)}
         </Text>
       </Box>
     </Box>

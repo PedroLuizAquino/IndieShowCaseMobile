@@ -8,15 +8,60 @@ import {
   ScrollView,
   Center,
 } from "native-base";
+import api from "../components/API";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TouchableOpacity } from "react-native";
 import CardServico from "../components/CardServico";
 import CardProfissional from "../components/CardProfissional";
 import { ButtonEstilizado } from "../components/ButtonEstilizado";
+import Carrossel from "../components/Carrosel";
+import IServico from "../@types/IServico";
+import IProfissional from "../@types/IProfissional";
 
 export default function Agendamento({ navigation }) {
   const [numSecao, setNumSecao] = useState(0);
+  const [servicos, setServicos] = useState<IServico[]>([]);
+  const [profissionais, setProfissionais] = useState<IProfissional[]>([]);
+
+  useEffect(() => {
+    const fetchServios = async () => {
+      try {
+        const response = await api.get("/ser_servicos");
+        setServicos(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.log("Erro ao buscar servicos: ", error);
+      }
+    };
+
+    fetchServios();
+  }, []);
+
+  useEffect(() => {
+    const fetchProfissionais = async () => {
+      try {
+        const response = await api.get("/pro_profissionais");
+        const proData = response.data;
+
+        // Fetch user details for each professional
+        const proDetails = await Promise.all(
+          proData.map(async (pro: IProfissional) => {
+            const userResponse = await api.get(`/usu_usuarios/${pro.usu_id}`);
+            console.log(pro.usu_id);
+            return { ...pro, ...userResponse.data };
+          })
+        );
+
+        setProfissionais(proDetails);
+        console.log(proDetails);
+      } catch (error) {
+        console.log("Erro ao buscar profissionais: ", error);
+      }
+    };
+
+    fetchProfissionais();
+  }, []);
 
   const avancarSecao = () => {
     setNumSecao(numSecao + 1);
@@ -89,11 +134,11 @@ export default function Agendamento({ navigation }) {
             Serviços
           </Text>
 
-          <Box flexDirection={"row"}>
-            <CardServico />
-            <Box mx={2}></Box>
-            <CardServico />
-          </Box>
+          <Carrossel>
+            {servicos.map((servico) => (
+              <CardServico key={servico.ser_id} {...servico} />
+            ))}
+          </Carrossel>
 
           <Text
             color={"#E29C31"}
@@ -103,10 +148,16 @@ export default function Agendamento({ navigation }) {
           >
             Profissionais
           </Text>
-          <Box flexDirection={"row"}>
-            <CardProfissional />
-            <Box mx={2}></Box>
-            <CardProfissional />
+
+          <Box h={96}>
+            <Carrossel>
+              {profissionais.map((profissional) => (
+                <CardProfissional
+                  key={profissional.pro_id}
+                  profissional={profissional}
+                />
+              ))}
+            </Carrossel>
           </Box>
 
           <Center>

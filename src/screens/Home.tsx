@@ -13,6 +13,7 @@ import imgCarrosel from "../assets/images/imgCarroselHome.png";
 import { useFonts } from "expo-font";
 import CardServico from "../components/CardServico";
 import CardProfissional from "../components/CardProfissional";
+import Carrossel from "../components/Carrosel";
 
 export default function Home() {
   const [fontsCarregadas, fontsError] = useFonts({
@@ -78,9 +79,9 @@ export default function Home() {
       </Text>
 
       <Box flexDirection={"row"}>
-        <CardServico />
-        <Box mx={2}></Box>
-        <CardServico />
+        <Carrossel>
+          <CardServico ser_id={1} ser_preco={24} ser_tipo="teste" />
+        </Carrossel>
       </Box>
 
       <Text
@@ -91,10 +92,10 @@ export default function Home() {
       >
         Profissionais
       </Text>
-      <Box flexDirection={"row"}>
-        <CardProfissional />
-        <Box mx={2}></Box>
-        <CardProfissional />
+      <Box mb={32}>
+        <Carrossel>
+          <Text color={"white"}>CardProfissional aqui</Text>
+        </Carrossel>
       </Box>
     </ScrollView>
   );

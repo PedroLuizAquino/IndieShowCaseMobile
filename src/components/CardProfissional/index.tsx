@@ -1,12 +1,19 @@
 import { useFonts } from "expo-font";
-import { Avatar, Box, Center, Divider, Spacer, Text } from "native-base";
+import { Avatar, Box, Center, Divider, Text, VStack } from "native-base";
+import IProfisisonal from "../../@types/IProfissional";
 
-export default function CardProfissional() {
+interface ICardProfissionalProps {
+  profissional: IProfisisonal;
+}
+
+export default function CardProfissional({
+  profissional,
+}: ICardProfissionalProps) {
   const [fontsCarregadas, fontsError] = useFonts({
     NeohellenicRegular: require("../../assets/fonts/Neohellenic/GFSNeohellenic-Regular.ttf"),
     NeohellenicBold: require("../../assets/fonts/Neohellenic/GFSNeohellenic-Bold.ttf"),
   });
-  
+
   return (
     <Box
       backgroundColor={"#E29C31"}
@@ -15,28 +22,27 @@ export default function CardProfissional() {
       mt={4}
       borderRadius={"2xl"}
       justifyContent={"center"}
-      mb={32}
+      key={profissional.pro_id}
     >
-      <Center>
-        {" "}
+      <Center mb={5}>
         <Avatar
           position={"absolute"}
           zIndex={1}
           top={3}
           size={"lg"}
-          source={{ uri: "https://github.com/yohan-araujo.png" }}
+          source={{ uri: profissional.usu_foto }}
           borderWidth={3}
           borderColor={"#E29C31"}
         />
       </Center>
-      <Box h={48} bg={"black"} top={6} borderBottomRadius={"2xl"}>
+      <VStack h={48} bg={"black"} top={6} borderBottomRadius={"2xl"}>
         <Text
           color={"white"}
           textAlign={"center"}
           mt={8}
           fontFamily={"NeohellenicBold"}
         >
-          André Ramos
+          {profissional.usu_nomeCompleto}
         </Text>
         <Center>
           <Divider bg={"#E29C31"} w={24} />
@@ -74,7 +80,7 @@ export default function CardProfissional() {
         >
           Barbeiro
         </Text>
-      </Box>
+      </VStack>
     </Box>
   );
 }
