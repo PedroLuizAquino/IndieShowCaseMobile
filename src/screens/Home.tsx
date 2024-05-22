@@ -8,12 +8,11 @@ import {
   ScrollView,
   Image,
   Row,
+  FlatList,
 } from "native-base";
-import imgCarrosel from "../assets/images/imgCarroselHome.png";
 import { useFonts } from "expo-font";
-import CardServico from "../components/CardServico";
-import CardProfissional from "../components/CardProfissional";
-import Carrossel from "../components/Carrosel";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import CardPostagem from "../components/CardPostagem/CardPostagem";
 
 export default function Home() {
   const [fontsCarregadas, fontsError] = useFonts({
@@ -21,81 +20,59 @@ export default function Home() {
     NeohellenicBold: require("../assets/fonts/Neohellenic/GFSNeohellenic-Bold.ttf"),
   });
 
+
+  const data = [
+    {
+      id: '1',
+      url: 'https://cdn.discordapp.com/attachments/722058173095084064/948073992944762880/iu.png?ex=664e1cf6&is=664ccb76&hm=b75df47540b49b00d8dc41b1e4e076ecb050825266b607984618708ee7e83ec2&',
+      name:'Nome do projeto',
+      descricao: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry',
+      usuario: 'Pedro',
+      curtidas: '2',
+      comentarios: '3'
+    },
+    {
+      id: '2',
+      url: 'https://cdn.discordapp.com/attachments/722058173095084064/948073992944762880/iu.png?ex=664e1cf6&is=664ccb76&hm=b75df47540b49b00d8dc41b1e4e076ecb050825266b607984618708ee7e83ec2&',
+      name:'Nome do projeto',
+      descricao: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry',
+      usuario: 'Pedro',
+      curtidas: '2',
+      comentarios: '3'
+    }
+  ]; 
+
   return (
     <ScrollView flex={1} p={5} backgroundColor={"#1D1D1D"}>
       <VStack flexDirection={"row"}>
-        <Box>
-          <Text color="white" fontSize={20} fontFamily={"NeohellenicRegular"}>
-            Bem vindo de volta,
-          </Text>
-          <Text color={"#E29C31"} fontSize={20} fontFamily={"NeohellenicBold"}>
-            Yohan
-            <Text color="white" fontSize={20} fontFamily={"NeohellenicRegular"}>
-              !
-            </Text>
+        <Box pt={4}>
+        <Ionicons
+                name={'menu'}
+                color={"#E29C31"}
+                size={40}
+              />
+        </Box>
+        <Box pt={5} pl={5}>
+          <Text color="white" fontSize={20}>
+            IndieShowCase
           </Text>
         </Box>
         <Spacer />
         <Box>
           <Avatar
-            source={{ uri: "https://github.com/yohan-araujo.png" }}
+            source={{ uri: "https://github.com/PedroLuizAquino.png" }}
             size={"lg"}
           />
         </Box>
       </VStack>
 
-      <Divider mt={15} />
-      <Box
-        backgroundColor={"black"}
-        h={125}
-        mt={12}
-        borderRadius={"xl"}
-        justifyContent={"center"}
-      >
-        <Image
-          source={imgCarrosel}
-          alt="foto do carrosel"
-          h={125}
-          borderRadius={"2xl"}
+      <Divider mt={15} mb={10} />
+      <Box>
+        <FlatList
+        data={data}
+        renderItem={({item}) => <CardPostagem data={item}/>}
+        showsHorizontalScrollIndicator={false}
         />
-      </Box>
-      <Text color={"white"} textAlign={"center"}>
-        Stepper aqui
-      </Text>
-
-      <VStack bg={"#E29C31"} mt={4} w={"24"} rounded={"full"}>
-        <Text fontSize={16} textAlign={"center"} fontFamily={"NeohellenicBold"}>
-          Categorias
-        </Text>
-      </VStack>
-
-      <Text
-        color={"#E29C31"}
-        mt={8}
-        fontSize={20}
-        fontFamily={"NeohellenicBold"}
-      >
-        Serviços
-      </Text>
-
-      <Box flexDirection={"row"}>
-        <Carrossel>
-          <CardServico ser_id={1} ser_preco={24} ser_tipo="teste" />
-        </Carrossel>
-      </Box>
-
-      <Text
-        color={"#E29C31"}
-        mt={8}
-        fontSize={20}
-        fontFamily={"NeohellenicBold"}
-      >
-        Profissionais
-      </Text>
-      <Box mb={32}>
-        <Carrossel>
-          <Text color={"white"}>CardProfissional aqui</Text>
-        </Carrossel>
       </Box>
     </ScrollView>
   );

@@ -10,10 +10,12 @@ import {
 import Ionicons from "react-native-vector-icons/Ionicons";
 import * as Animatable from "react-native-animatable";
 import Home from "./Home";
-import Agendamento from "./Agendamento";
-import Galeria from "./Galeria";
 import Perfil from "./Perfil";
+import Pesquisar from "./Pesquisar";
+import Publicar from "./Publicar";
+import Favoritos from "./Favoritos";
 import { useFonts } from "expo-font";
+
 
 const TabArr = [
   {
@@ -25,18 +27,26 @@ const TabArr = [
     alphaClr: "black",
   },
   {
-    route: "Agendamento",
-    label: "Agendar",
-    icon: "calendar",
-    component: Agendamento,
+    route: "Pesquisar",
+    label: "Pesquisar",
+    icon: "search-outline",
+    component: Pesquisar,
     color: "#E29C31",
     alphaClr: "black",
   },
   {
-    route: "Galeria",
-    label: "Galeria",
-    icon: "image",
-    component: Galeria,
+    route: "Publicar",
+    label: "Publicar",
+    icon: "add-circle",
+    component: Publicar,
+    color: "#E29C31",
+    alphaClr: "black",
+  },
+  {
+    route: "Favoritos",
+    label: "Favoritos",
+    icon: "heart",
+    component: Favoritos,
     color: "#E29C31",
     alphaClr: "black",
   },
@@ -61,16 +71,6 @@ const TabButton = (props) => {
     NeohellenicBold: require("../assets/fonts/Neohellenic/GFSNeohellenic-Bold.ttf"),
   });
 
-  useEffect(() => {
-    if (focused) {
-      // 0.3: { scale: .7 }, 0.5: { scale: .3 }, 0.8: { scale: .7 },
-      viewRef.current.animate({ 0: { scale: 0 }, 1: { scale: 1 } });
-      textViewRef.current.animate({ 0: { scale: 0 }, 1: { scale: 1 } });
-    } else {
-      viewRef.current.animate({ 0: { scale: 1 }, 1: { scale: 0 } });
-      textViewRef.current.animate({ 0: { scale: 1 }, 1: { scale: 0 } });
-    }
-  }, [focused]);
 
   return (
     <TouchableOpacity
@@ -83,7 +83,7 @@ const TabButton = (props) => {
           ref={viewRef}
           style={[
             StyleSheet.absoluteFillObject,
-            { backgroundColor: item.color, borderRadius: 16 },
+            { backgroundColor: focused? item.color : "#1D1D1D", borderRadius: 16 },
           ]}
         />
         <View style={[styles.btn]}>
@@ -94,7 +94,7 @@ const TabButton = (props) => {
               <Ionicons
                 name={item.icon}
                 color={focused ? "black" : "#E29C31"}
-                size={20}
+                size={30}
               />
             </View>
           )}
@@ -105,7 +105,7 @@ const TabButton = (props) => {
                 <Ionicons
                   name={item.icon}
                   color={focused ? "black" : "#E29C31"}
-                  size={18}
+                  size={20}
                 />
                 <Text
                   style={{
@@ -134,10 +134,8 @@ export default function Menu() {
         screenOptions={{
           headerShown: false,
           tabBarStyle: {
-            height: 60,
+            height: 80,
             position: "absolute",
-            margin: 16,
-            borderRadius: 16,
             backgroundColor: "#1D1D1D",
             borderColor: "black",
             borderWidth: 2,

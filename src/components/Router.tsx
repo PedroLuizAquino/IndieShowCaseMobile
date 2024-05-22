@@ -12,7 +12,7 @@ export default function Router() {
       <Tab.Navigator>
         <Tab.Screen
           name="Login"
-          component={Login}
+          component={Menu}
           options={{ headerShown: false }}
         />
         <Tab.Screen
