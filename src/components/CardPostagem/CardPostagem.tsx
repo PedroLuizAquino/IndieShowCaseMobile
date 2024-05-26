@@ -8,11 +8,11 @@ export default function CardPostagem({ data }: any) {
       flexDirection={"column"}
       mb={4}
       p={2}
-      backgroundColor={"#3D0066"}
+      backgroundColor={"#202020"}
       borderRadius={4}
     >
       <Box>
-        <Image source={{ uri: data.url }} w="100%" h={200} />
+        <Image source={{ uri: data.url }} alt="Imagem da postagem" w="100%" h={200} />
       </Box>
       <Box my={3}>
         <Heading size={"sm"} pb={1} color={"white"}>
@@ -30,7 +30,7 @@ export default function CardPostagem({ data }: any) {
         </Text>
         </Box>
         <Box flexDirection={"row"}>
-          <Ionicons name={"thumbs-up"} color={"white"} size={20} />
+          <Ionicons name={"heart"} color={"white"} size={20} />
           <Text ml={2} color={"white"} numberOfLines={1} pr={2}>
             {data.curtidas}
           </Text>

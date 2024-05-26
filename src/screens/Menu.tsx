@@ -14,7 +14,7 @@ import Perfil from "./Perfil";
 import Pesquisar from "./Pesquisar";
 import Publicar from "./Publicar";
 import Favoritos from "./Favoritos";
-import { useFonts } from "expo-font";
+import Login from "./Login";
 
 
 const TabArr = [
@@ -23,7 +23,7 @@ const TabArr = [
     label: "Home",
     icon: "home",
     component: Home,
-    color: "#E29C31",
+    color: "#187BCD",
     alphaClr: "black",
   },
   {
@@ -31,7 +31,7 @@ const TabArr = [
     label: "Pesquisar",
     icon: "search-outline",
     component: Pesquisar,
-    color: "#E29C31",
+    color: "#187BCD",
     alphaClr: "black",
   },
   {
@@ -39,23 +39,23 @@ const TabArr = [
     label: "Publicar",
     icon: "add-circle",
     component: Publicar,
-    color: "#E29C31",
+    color: "#187BCD",
     alphaClr: "black",
   },
-  {
-    route: "Favoritos",
-    label: "Favoritos",
-    icon: "heart",
-    component: Favoritos,
-    color: "#E29C31",
-    alphaClr: "black",
-  },
+  // {
+  //   route: "Favoritos",
+  //   label: "Favoritos",
+  //   icon: "heart",
+  //   component: Favoritos,
+  //   color: "#187BCD",
+  //   alphaClr: "black",
+  // },
   {
     route: "Perfil",
     label: "Perfil",
     icon: "person",
     component: Perfil,
-    color: "#E29C31",
+    color: "#187BCD",
     alphaClr: "black",
   },
 ];
@@ -67,9 +67,7 @@ const TabButton = (props) => {
   const focused = accessibilityState.selected;
   const viewRef = useRef(null);
   const textViewRef = useRef(null);
-  const [fontsCarregadas, fontsError] = useFonts({
-    NeohellenicBold: require("../assets/fonts/Neohellenic/GFSNeohellenic-Bold.ttf"),
-  });
+
 
 
   return (
@@ -83,7 +81,7 @@ const TabButton = (props) => {
           ref={viewRef}
           style={[
             StyleSheet.absoluteFillObject,
-            { backgroundColor: focused? item.color : "#1D1D1D", borderRadius: 16 },
+            { backgroundColor: focused? item.color : "#F4F4F4", borderRadius: 16 },
           ]}
         />
         <View style={[styles.btn]}>
@@ -93,7 +91,7 @@ const TabButton = (props) => {
             <View style={[styles.btn]}>
               <Ionicons
                 name={item.icon}
-                color={focused ? "black" : "#E29C31"}
+                color={focused ? "black" : "#187BCD"}
                 size={30}
               />
             </View>
@@ -104,16 +102,14 @@ const TabButton = (props) => {
               <View style={styles.btn2}>
                 <Ionicons
                   name={item.icon}
-                  color={focused ? "black" : "#E29C31"}
+                  color={focused ? "#F4F4F4" : "#F4F4F4"}
                   size={20}
                 />
                 <Text
                   style={{
-                    color: "black",
+                    color: "#F4F4F4",
                     paddingHorizontal: 8,
                     fontSize: 16,
-                    textTransform: "uppercase",
-                    fontFamily: "NeohellenicBold",
                   }}
                 >
                   {item.label}
@@ -136,8 +132,8 @@ export default function Menu() {
           tabBarStyle: {
             height: 80,
             position: "absolute",
-            backgroundColor: "#1D1D1D",
-            borderColor: "black",
+            backgroundColor: "#F4F4F4",
+            borderColor: "#F4F4F4",
             borderWidth: 2,
           },
         }}

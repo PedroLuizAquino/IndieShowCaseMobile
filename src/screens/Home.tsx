@@ -9,16 +9,13 @@ import {
   Image,
   Row,
   FlatList,
+  View,
 } from "native-base";
-import { useFonts } from "expo-font";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import CardPostagem from "../components/CardPostagem/CardPostagem";
 
 export default function Home() {
-  const [fontsCarregadas, fontsError] = useFonts({
-    NeohellenicRegular: require("../assets/fonts/Neohellenic/GFSNeohellenic-Regular.ttf"),
-    NeohellenicBold: require("../assets/fonts/Neohellenic/GFSNeohellenic-Bold.ttf"),
-  });
+
 
 
   const data = [
@@ -43,18 +40,18 @@ export default function Home() {
   ]; 
 
   return (
-    <ScrollView flex={1} p={5} backgroundColor={"#1D1D1D"}>
+    <View flex={1} p={5} backgroundColor={"#F4F4F4"}>
       <VStack flexDirection={"row"}>
         <Box pt={4}>
         <Ionicons
                 name={'menu'}
-                color={"#E29C31"}
+                color={"#187BDC"}
                 size={40}
               />
         </Box>
         <Box pt={5} pl={5}>
-          <Text color="white" fontSize={20}>
-            IndieShowCase
+          <Text color="#202020" fontSize={20}>
+          IndieShowcase
           </Text>
         </Box>
         <Spacer />
@@ -67,13 +64,13 @@ export default function Home() {
       </VStack>
 
       <Divider mt={15} mb={10} />
-      <Box>
+      <Box mb={40}>
         <FlatList
         data={data}
         renderItem={({item}) => <CardPostagem data={item}/>}
         showsHorizontalScrollIndicator={false}
         />
       </Box>
-    </ScrollView>
+    </View>
   );
 }

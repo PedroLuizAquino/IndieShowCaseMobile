@@ -11,7 +11,7 @@ export default function Router() {
     <NavigationContainer>
       <Tab.Navigator>
         <Tab.Screen
-          name="Login"
+          name="Menu"
           component={Menu}
           options={{ headerShown: false }}
         />
@@ -21,8 +21,8 @@ export default function Router() {
           options={{ headerShown: false }}
         />
         <Tab.Screen
-          name="Tabs"
-          component={Menu}
+          name="Login"
+          component={Login}
           options={{ headerShown: false }}
         />
       </Tab.Navigator>
