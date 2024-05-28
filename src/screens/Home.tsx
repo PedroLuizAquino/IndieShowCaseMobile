@@ -21,7 +21,7 @@ export default function Home() {
   const data = [
     {
       id: '1',
-      url: 'https://cdn.discordapp.com/attachments/722058173095084064/948073992944762880/iu.png?ex=664e1cf6&is=664ccb76&hm=b75df47540b49b00d8dc41b1e4e076ecb050825266b607984618708ee7e83ec2&',
+      url: 'https://picsum.photos/202',
       name:'Nome do projeto',
       descricao: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry',
       usuario: 'Pedro',
@@ -30,12 +30,12 @@ export default function Home() {
     },
     {
       id: '2',
-      url: 'https://cdn.discordapp.com/attachments/722058173095084064/948073992944762880/iu.png?ex=664e1cf6&is=664ccb76&hm=b75df47540b49b00d8dc41b1e4e076ecb050825266b607984618708ee7e83ec2&',
+      url: 'https://picsum.photos/201',
       name:'Nome do projeto',
       descricao: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry',
       usuario: 'Pedro',
-      curtidas: '2',
-      comentarios: '3'
+      curtidas: '12',
+      comentarios: '5'
     }
   ]; 
 

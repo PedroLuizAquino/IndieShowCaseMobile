@@ -1,5 +1,6 @@
-import { Input, IInputProps, Text, Icon, Box } from "native-base";
+import { Input, IInputProps, Text, Icon, Box, TextArea } from "native-base";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import { InputPadrao } from "./InputPadrao";
 
 
 interface InputProps extends IInputProps {
@@ -8,11 +9,12 @@ interface InputProps extends IInputProps {
   tamanho?: string;
 }
 
-export function InputPadrao({ placeholder, tipo, tamanho = "100%",...rest }: InputProps) {
+export function InputTextArea({ placeholder, tipo, tamanho = "100%",...rest }: InputProps) {
   return (
     <>
-      <Input
+      <TextArea
         variant={"rounded"}
+        autoCompleteType={InputPadrao}
         placeholder={placeholder}
         placeholderTextColor={"#404040"}
         m={2}
@@ -25,8 +27,8 @@ export function InputPadrao({ placeholder, tipo, tamanho = "100%",...rest }: Inp
         borderColor={'#404040'}
         type={tipo}
         color={'#404040'}
-        InputLeftElement={ <Icon as={<Ionicons  name={""} color={'#404040'} size={20} />} 
-        size={5} ml={2} color={'#404040'}/>}
+        InputLeftElement={ <Icon as={<Ionicons  name={""} color={'#404040'} />} 
+        size={5} ml={2} mb={9} color={'#404040'}/>}
         {...rest}
       />
     </>
