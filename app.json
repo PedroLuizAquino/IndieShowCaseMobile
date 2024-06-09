@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "barbershop-mobile",
-    "slug": "barbershop-mobile",
+    "name": "indieshowcase-mobile",
+    "slug": "indieshowcase-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -20,7 +20,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.anonymous.barbershopmobile"
+      "package": "com.anonymous.indieshowcasemobile"
     },
     "web": {
       "favicon": "./assets/favicon.png"

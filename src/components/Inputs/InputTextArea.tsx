@@ -13,8 +13,8 @@ export function InputTextArea({ placeholder, tipo, tamanho = "100%",...rest }: I
   return (
     <>
       <TextArea
-        variant={"rounded"}
         autoCompleteType={InputPadrao}
+        rounded={15}
         placeholder={placeholder}
         placeholderTextColor={"#404040"}
         m={2}

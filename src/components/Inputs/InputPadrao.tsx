@@ -12,8 +12,8 @@ export function InputPadrao({ placeholder, tipo, tamanho = "100%",...rest }: Inp
   return (
     <>
       <Input
-        variant={"rounded"}
         placeholder={placeholder}
+        rounded={15}
         placeholderTextColor={"#404040"}
         m={2}
         size="md"

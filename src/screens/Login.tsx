@@ -21,8 +21,16 @@ export default function Login({ navigation }) {
     <View flex={1} p={5} backgroundColor={"#F4F4F4"} alignItems={'center'} justifyContent={'center'}>
         <Heading mb={5}>Entrar no IndieShowcase</Heading>
 
-        <InputPadrao  placeholder="Email" tipo="text" />
-        <InputPadrao placeholder="Senha" tipo="password"/>
+        <Box mt={4}>
+          <Heading color={"black"} ml={2} fontSize={16}>Email</Heading>
+          <InputPadrao  placeholder="Email" tipo="text" />
+        </Box>
+
+
+        <Box mt={4}>
+          <Heading color={"black"} ml={2} fontSize={16}>Senha</Heading>
+          <InputPadrao  placeholder="Senha" tipo="password" />
+        </Box>
 
         <ButtonPadrao mt={5} texto="Entrar" onPress={() => {
           navigation.navigate("Menu");
@@ -32,6 +40,7 @@ export default function Login({ navigation }) {
         onPress={() => {
           navigation.navigate("Login");
         }} /> 
+
         <Box
         w={"100%"}
         flexDirection={"row"}

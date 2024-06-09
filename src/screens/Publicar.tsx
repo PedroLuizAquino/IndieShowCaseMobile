@@ -16,26 +16,28 @@ export default function Publicar({ navigation }) {
         Criar Postagem
       </Heading>
       <FormControl mt={4} alignItems={"center"}>
-        <Box>
+
+        <Box mt={4}>
+          <Heading color={"black"} ml={2} fontSize={16}>Titulo da Postagem</Heading>
           <InputPadrao placeholder="Insira o título da postagem..." tamanho="80%" mt={3} />
         </Box>
+
         <Box mt={4}>
+        <Heading color={"black"} ml={2} fontSize={16}>Tag</Heading>
         <InputPadrao placeholder="Insira a tag..." tamanho="80%" mt={3} />
         </Box>
-        <Box mt={4}>
-        <InputPadrao  placeholder="Insira sua senha..." tipo="password" tamanho="80%" mt={3} />
-        </Box>
-        <Box mt={4}>
-          {/* <InputPadrao
-            placeholder="Insira a descrição..."
-            tamanho="80%"
-            mt={3}
-            tipo="password"
-          /> */}
 
+        <Box mt={4}>
+        <Heading color={"black"} ml={2} fontSize={16}>Categoria</Heading>
+        <InputPadrao  placeholder="Insira sua categoria..." tipo="password" tamanho="80%" mt={3} />
+        </Box>
+
+        <Box mt={4}>
+          <Heading color={"black"} ml={2} fontSize={16}>Descrição</Heading>
           <InputTextArea placeholder='Insira a descrição...' tamanho='80%'/>
-
         </Box>
+
+      
       </FormControl>
       <Center mt={10}>
         <ButtonPadrao texto="Publicar" 

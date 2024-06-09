@@ -1,4 +1,4 @@
-import { Box, FlatList, Input, ScrollView, Text, VStack, View } from 'native-base';
+import { Box, FlatList, Heading, Input, ScrollView, Text, VStack, View } from 'native-base';
 import { InputPesquisa } from '../components/Inputs/InputPesquisa';
 import CardPostagem from '../components/CardPostagem/CardPostagem';
 
@@ -30,6 +30,7 @@ export default function Pesquisar() {
     <Box flex={1} bg={'#202020'} p={5} maxH={20} >
       <InputPesquisa placeholder='Pesquisar'></InputPesquisa>
     </Box>
+    {data.length > 0 ? (
     <Box  flex={2} p={5} mb={20}>
         <FlatList
         data={data}
@@ -37,6 +38,13 @@ export default function Pesquisar() {
         showsHorizontalScrollIndicator={false}
         />
       </Box>
+      ) :
+      <Box flex={1} alignItems={'center'} justifyContent={'center'}>
+      <Heading mb={10}>
+        Nenhum resultado encontrado 
+      </Heading>
+      </Box>
+      }
     </>
   );
 }

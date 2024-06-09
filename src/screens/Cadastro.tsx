@@ -8,6 +8,7 @@ import {
   Spacer,
   Text,
   VStack,
+  View,
 } from "native-base";
 import { TouchableOpacity } from "react-native";
 import { InputOutline } from "../components/Inputs/InputOutline";
@@ -16,7 +17,7 @@ import { InputPadrao } from "../components/Inputs/InputPadrao";
 
 export default function Cadastro({ navigation }) {
   return (
-    <ScrollView flex={1} bg={"#F4F4F4"}>
+    <View flex={1} bg={"#F4F4F4"} alignItems={'center'} justifyContent={'center'}>
       <Heading
         color={"black"}
         textAlign={"center"}
@@ -26,16 +27,20 @@ export default function Cadastro({ navigation }) {
         Cadastrar
       </Heading>
       <FormControl mt={4} alignItems={"center"}>
-        <Box>
+        <Box mt={4}>
+        <Heading color={"black"} ml={2} fontSize={16}>Nome</Heading>
           <InputPadrao placeholder="Insira seu nome de usuário..." tamanho="80%" mt={3} />
         </Box>
         <Box mt={4}>
+        <Heading color={"black"} ml={2} fontSize={16}>Email</Heading>
         <InputPadrao placeholder="Insira seu email..." tamanho="80%" mt={3} />
         </Box>
         <Box mt={4}>
+        <Heading color={"black"} ml={2} fontSize={16}>Senha</Heading>
         <InputPadrao placeholder="Insira sua senha..." tipo="password" tamanho="80%" mt={3} />
         </Box>
         <Box mt={4}>
+        <Heading color={"black"} ml={2} fontSize={16}>Confirmação da senha</Heading>
           <InputPadrao
             placeholder="Confirma sua senha..."
             tamanho="80%"
@@ -44,13 +49,11 @@ export default function Cadastro({ navigation }) {
           />
         </Box>
       </FormControl>
-      <Center mt={10}>
-        <ButtonPadrao texto="Cadastrar" 
+        <ButtonPadrao mt={5} texto="Cadastrar" 
           onPress={() => {
             navigation.navigate("Login");
           }}
         />
-      </Center>
       <Box
         w={"100%"}
         flexDirection={"row"}
@@ -72,6 +75,6 @@ export default function Cadastro({ navigation }) {
           </Text>
         </TouchableOpacity>
       </Box>
-    </ScrollView>
+    </View>
   );
 }

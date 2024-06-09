@@ -3,6 +3,7 @@ import {
   Box,
   FlatList,
   HStack,
+  Heading,
   ScrollView,
   Text,
   VStack,
@@ -58,13 +59,14 @@ export default function Perfil({navigation}) {
           />
         </Box>
         <Box mt={2}>
-          <Text fontSize={16}>@{nome}</Text>
+          <Text fontSize={16}>{nome}</Text>
         </Box>
-        <Box mt={5}>
+        <Box mt={3}>
           <Text fontStyle={'italic'}>"{biografia}"</Text>
         </Box>
       </VStack>
       <Box mb={40}>
+      <Heading color={"black"} mb={5}  fontSize={18}>Minhas Postagens</Heading>
         <FlatList
         scrollEnabled = {false}
         data={data}

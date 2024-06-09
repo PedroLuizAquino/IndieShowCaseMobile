@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     alignItems: "center",
-    height: 60,
+    height: 80,
   },
   btn: {
     flexDirection: "row",
