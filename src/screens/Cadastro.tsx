@@ -11,49 +11,132 @@ import {
   View,
 } from "native-base";
 import { TouchableOpacity } from "react-native";
-import { InputOutline } from "../components/Inputs/InputOutline";
 import { ButtonPadrao } from "../components/Buttun/ButtonPadrao";
 import { InputPadrao } from "../components/Inputs/InputPadrao";
+import { useState } from "react";
+import api from "../components/API";
 
 export default function Cadastro({ navigation }) {
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [idade, setIdade] = useState("");
+  const [confirmarSenha, setConfirmarSenha] = useState("");
+
+  const handleCadastro = async () => {
+    if (senha !== confirmarSenha) {
+      // setTipoFeedback("erro");
+      // setMensagemFeedback("As senhas não coincidem.");
+      // setMostrarFeedback(true);
+      return;
+    }
+
+    const novoUsuario = {
+      nome: nome,
+      email: email,
+      idade: idade,
+      senha: senha,
+    };
+
+    try {
+      const usuarioResponse = await api.post("/usuarios/cadastro", novoUsuario);
+
+      if (usuarioResponse.status === 201) {
+        //usuario cadastrado
+        console.log("usuario cadastrado novo", usuarioResponse);
+        navigation.navigate("Login");
+      } else {
+        throw new Error("Erro ao cadastrar", usuarioResponse.data);
+      }
+    } catch (error) {
+      console.error("Erro ao cadastrar", error);
+      //mensagem de erro
+    }
+  };
+
   return (
-    <View flex={1} bg={"#F4F4F4"} alignItems={'center'} justifyContent={'center'}>
-      <Heading
-        color={"black"}
-        textAlign={"center"}
-        fontWeight={"bold"}
-        mt={10}
-      >
+    <View
+      flex={1}
+      bg={"#F4F4F4"}
+      alignItems={"center"}
+      justifyContent={"center"}
+    >
+      <Heading color={"black"} textAlign={"center"} fontWeight={"bold"} mt={10}>
         Cadastrar
       </Heading>
       <FormControl mt={4} alignItems={"center"}>
         <Box mt={4}>
-        <Heading color={"black"} ml={2} fontSize={16}>Nome</Heading>
-          <InputPadrao placeholder="Insira seu nome de usuário..." tamanho="80%" mt={3} />
+          <Heading color={"black"} ml={2} fontSize={16}>
+            Nome
+          </Heading>
+          <InputPadrao
+            placeholder="Insira seu nome de usuário..."
+            tamanho="80%"
+            mt={3}
+            value={nome}
+            onChangeText={setNome}
+          />
         </Box>
+
         <Box mt={4}>
-        <Heading color={"black"} ml={2} fontSize={16}>Email</Heading>
-        <InputPadrao placeholder="Insira seu email..." tamanho="80%" mt={3} />
+          <Heading color={"black"} ml={2} fontSize={16}>
+            Email
+          </Heading>
+          <InputPadrao
+            placeholder="Insira seu email..."
+            tamanho="80%"
+            mt={3}
+            value={email}
+            onChangeText={setEmail}
+          />
         </Box>
+
         <Box mt={4}>
-        <Heading color={"black"} ml={2} fontSize={16}>Senha</Heading>
-        <InputPadrao placeholder="Insira sua senha..." tipo="password" tamanho="80%" mt={3} />
+          <Heading color={"black"} ml={2} fontSize={16}>
+            Email
+          </Heading>
+          <InputPadrao 
+            placeholder="Insira sua idade..." 
+            tamanho="80%" 
+            mt={3} 
+            value={idade}
+            onChangeText={setIdade}
+          />
         </Box>
+
         <Box mt={4}>
-        <Heading color={"black"} ml={2} fontSize={16}>Confirmação da senha</Heading>
+          <Heading color={"black"} ml={2} fontSize={16}>
+            Senha
+          </Heading>
+          <InputPadrao
+            placeholder="Insira sua senha..."
+            tipo="password"
+            tamanho="80%"
+            mt={3}
+            value={senha}
+            onChangeText={setSenha}
+          />
+        </Box>
+
+        <Box mt={4}>
+          <Heading color={"black"} ml={2} fontSize={16}>
+            Confirmação da senha
+          </Heading>
           <InputPadrao
             placeholder="Confirma sua senha..."
             tamanho="80%"
             mt={3}
             tipo="password"
+            value={confirmarSenha}
+            onChangeText={setConfirmarSenha}
           />
         </Box>
       </FormControl>
-        <ButtonPadrao mt={5} texto="Cadastrar" 
-          onPress={() => {
-            navigation.navigate("Login");
-          }}
-        />
+      <ButtonPadrao
+        mt={5}
+        texto="Cadastrar"
+        onPress={handleCadastro}
+      />
       <Box
         w={"100%"}
         flexDirection={"row"}
