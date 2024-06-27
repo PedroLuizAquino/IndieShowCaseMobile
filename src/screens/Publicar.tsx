@@ -4,11 +4,12 @@ import { InputPadrao } from '../components/Inputs/InputPadrao';
 import { TouchableOpacity } from 'react-native';
 import { InputTextArea } from '../components/Inputs/InputTextArea';
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import api from '../components/API';
 import { launchImageLibrary } from 'react-native-image-picker';
 import * as ImagePicker from 'expo-image-picker';
 import * as DocumentPicker from 'expo-document-picker';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Publicar({ navigation }) {
   const [titulo, setTitulo] = useState("");
@@ -17,6 +18,8 @@ export default function Publicar({ navigation }) {
   const [descricao, setDescricao] = useState("");
   const [capa, setCapa] = useState(null);
   const [arquivo, setArquivo] = useState(null);
+  const [ fotoUsuario, setFotoUsuario] = useState("");
+
 
   const handleSelectCapa = async () => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -54,36 +57,43 @@ export default function Publicar({ navigation }) {
       // Defina uma mensagem de erro adequada para o usuário
     }
   };
+
+
+  useEffect(() => {
+    const fetchFotoUsuario = async () => {
+      try {
+        const foto = await AsyncStorage.getItem("usuarioFoto");
+        setFotoUsuario(foto);
+      } catch (error) {
+        console.error("Erro ao obter o id do cliente:", error);
+      }
+    };
+
+    fetchFotoUsuario();
+  }, []);
+
   const handlePublicar = async () => {
-    const formData = new FormData();
-    formData.append('titulo', titulo);
-    formData.append('tag', tag);
-    formData.append('categoria', categoria);
-    formData.append('descricao', descricao);
-    if(capa){
-      formData.append('capa', capa);
-    }
-    if(arquivo){
-      formData.append('arquivo', arquivo);
-    }
 
-
-    ///postagens/publicar
+    const NovaPostagem = {
+      titulo: titulo,
+      tag: tag,
+      categoria: categoria,
+      descricao: descricao,
+      capa: "",
+      arquivo: "", 
+      comentarios: Math.floor(Math.random() * (12 - 1 + 1)) + 1,
+      curtidas: Math.floor(Math.random() * (12 - 1 + 1)) + 1
+    }
 
     try{
-      const publicarRespose = await api.post("/postagens/publicar", formData,{
-        headers:{
-          'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${"token"}`,
-        }
-      })
+      const publicarRespose = await api.post("/pos_postagem", NovaPostagem)
 
       if(publicarRespose.status === 201){
         //postagem publicada com sucesso
         navigation.navigate('Home');
       }else{
-        console.error("Erro ao cadastrar usuário: ", publicarRespose.data);
-        throw new Error("Erro ao cadastrar usuário");
+        console.error("Erro ao fazer a postagem: ", publicarRespose.data);
+        throw new Error("Erro ao realizar a postagem");
       }
 
 
@@ -94,18 +104,9 @@ export default function Publicar({ navigation }) {
 
   }
 
-
-
   return (
     <ScrollView flex={1} bg={"#F4F4F4"}>
        <VStack  p={5}  flexDirection={"row"}>
-        <Box pt={4}>
-          <Ionicons name={"menu"} color={"#187BDC"} size={40} 
-           onPress={() => {
-            navigation.navigate("Drawer");
-          }}
-          />
-        </Box>
         <Box pt={5} pl={5}>
           <Text color="#202020" fontSize={20}>
             IndieShowcase
@@ -114,7 +115,7 @@ export default function Publicar({ navigation }) {
         <Spacer />
         <Box>
           <Avatar
-            source={{ uri: "https://github.com/PedroLuizAquino.png" }}
+            source={{ uri: fotoUsuario || "https://github.com/GustavoTF25.png"}}
             size={"lg"}
           />
         </Box>
@@ -172,9 +173,7 @@ export default function Publicar({ navigation }) {
         </Box>
 
         <ButtonPadrao mt={8} mb={40} texto="Publicar" 
-          onPress={() => {
-            navigation.navigate("Home");
-          }}
+          onPress={handlePublicar}
         />
       
       </FormControl>

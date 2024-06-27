@@ -36,10 +36,11 @@ export default function Cadastro({ navigation }) {
       email: email,
       idade: idade,
       senha: senha,
+      foto: "https://github.com/GustavoTF25.png"
     };
 
     try {
-      const usuarioResponse = await api.post("/usuarios/cadastro", novoUsuario);
+      const usuarioResponse = await api.post("/usu_usuarios", novoUsuario);
 
       if (usuarioResponse.status === 201) {
         //usuario cadastrado
@@ -93,7 +94,7 @@ export default function Cadastro({ navigation }) {
 
         <Box mt={4}>
           <Heading color={"black"} ml={2} fontSize={16}>
-            Email
+            Idade
           </Heading>
           <InputPadrao 
             placeholder="Insira sua idade..." 

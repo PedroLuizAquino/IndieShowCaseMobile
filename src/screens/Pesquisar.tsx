@@ -1,50 +1,64 @@
 import { Box, FlatList, Heading, Input, ScrollView, Text, VStack, View } from 'native-base';
 import { InputPesquisa } from '../components/Inputs/InputPesquisa';
 import CardPostagem from '../components/CardPostagem/CardPostagem';
-
-const data = [
-  {
-    id: '1',
-    url: 'https://picsum.photos/200/300',
-    name:'exemplo de resultado de busca 1',
-    descricao: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry',
-    usuario: 'Pedro',
-    curtidas: '2',
-    comentarios: '3'
-  },
-  {
-    id: '2',
-    url: 'https://picsum.photos/200',
-    name:'exemplo de resultado de busca 2',
-    descricao: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry',
-    usuario: 'Pedro',
-    curtidas: '2',
-    comentarios: '3'
-  }
-]; 
+import { useEffect, useState } from 'react';
+import api from '../components/API';
+import IPostagem from '../components/Interface/Interface';
 
 
 export default function Pesquisar() {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredData, setFilteredData] = useState<IPostagem[]>([]);
+  const [postagem, setPostagem] = useState<IPostagem[]>([]);
+
+
+  useEffect(() => {
+    const fetchServicos = async () => {
+      try {
+        const response = await api.get("/pos_postagem?order=desc");
+        setPostagem(response.data);
+      } catch (error) {
+        console.log("Erro ao buscar servicos: ", error);
+      }
+    };
+
+    fetchServicos();
+  }, []);
+
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+    const filtered = postagem.filter(item =>
+      item.titulo.toString().toLowerCase().includes(query.toLowerCase())
+    );
+    setFilteredData(filtered);
+  };
+
   return (
     <>
-    <Box flex={1} bg={'#202020'} p={5} maxH={20} >
-      <InputPesquisa placeholder='Pesquisar'></InputPesquisa>
-    </Box>
-    {data.length > 0 ? (
-    <Box  flex={2} p={5} mb={20}>
-        <FlatList
-        data={data}
-        renderItem={({item}) => <CardPostagem data={item}/>}
-        showsHorizontalScrollIndicator={false}
-        />
+      <Box flex={1} bg={'#202020'} p={5} maxH={20}>
+        <Input
+          value={searchQuery}
+          onChangeText={handleSearch}
+          placeholder='Pesquisar'
+          color={'light.100'}
+         />
       </Box>
-      ) :
-      <Box flex={1} alignItems={'center'} justifyContent={'center'}>
-      <Heading mb={10}>
-        Nenhum resultado encontrado 
-      </Heading>
-      </Box>
-      }
+      {filteredData.length > 0 ? (
+        <Box flex={2} p={5} mb={20}>
+          <FlatList
+            data={filteredData}
+            renderItem={({ item }) => <CardPostagem data={item} />}
+            showsHorizontalScrollIndicator={false}
+          />
+        </Box>
+      ) : (
+        <Box flex={1} alignItems={'center'} justifyContent={'center'}>
+          <Heading mb={10}>
+            Nenhum resultado encontrado
+          </Heading>
+        </Box>
+      )}
     </>
   );
-}
+};
+

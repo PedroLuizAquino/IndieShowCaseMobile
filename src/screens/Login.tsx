@@ -23,27 +23,30 @@ export default function Login({ navigation }) {
   const [senha, setSenha] = useState("");
 
   const handleLogin = async () => {
-    const usuarioLogado = {
-      email: email,
-      senha: senha,
-    };
     try {
-      const usuarioResponse = await api.post("/usuarios/login", usuarioLogado);
-      const usuario = usuarioResponse.data;
+      const usuarioResponse = await api.get("/usu_usuarios");
+      const usuarios = usuarioResponse.data;
+      console.log("usuarios",usuarios)
+
+      const usuarioEncontrado = usuarios.find(
+        (usuario) =>
+          usuario.email === email && usuario.senha === senha
+      );
 
       
-      if (usuarioResponse.status === 201) {
+      if (usuarioEncontrado) {
 
-        const { usu_id, usu_nome, usu_foto } = usuario;
+        const { id, nome, foto } = usuarioEncontrado;
 
-      await AsyncStorage.setItem("usuarioId", usu_id);
-      await AsyncStorage.setItem("usuarioNome", usu_nome);
-      await AsyncStorage.setItem("usuarioFoto", usu_foto);
+      await AsyncStorage.setItem("usuarioId", id);
+      await AsyncStorage.setItem("usuarioNome", nome);
+      await AsyncStorage.setItem("usuarioFoto", foto);
 
-      console.log("usuario.data",usuario.data)
-      console.log("usuarioId", usu_id);
-      console.log("usuarioNome", usu_nome);
-      console.log("usuarioFoto", usu_foto);
+
+      console.log("usuario.data",usuarios.data)
+      console.log("usuarioId", id);
+      console.log("usuarioNome", nome);
+      console.log("usuarioFoto", foto);
 
       navigation.navigate("Home");
 

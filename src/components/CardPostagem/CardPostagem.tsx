@@ -1,8 +1,9 @@
-import { ScrollView, Text, FlatList, Box, Image, Heading } from "native-base";
+import { ScrollView, Text, FlatList, Box, Image, Heading, Pressable } from "native-base";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
-export default function CardPostagem({ data }: any) {
+export default function CardPostagem({ data}: any, {navigation}) {
   return (
+    <Pressable isPressed >
     <Box
       flex={1}
       flexDirection={"column"}
@@ -12,11 +13,11 @@ export default function CardPostagem({ data }: any) {
       borderRadius={4}
     >
       <Box>
-        <Image source={{ uri: data.url }} alt="Imagem da postagem" w="100%" h={200} />
+        <Image source={{ uri: data.capa }} alt="Imagem da postagem" w="100%" h={200} />
       </Box>
       <Box my={3}>
         <Heading size={"sm"} pb={1} color={"white"}>
-          {data.name}
+          {data.titulo}
         </Heading>
         <Text numberOfLines={2} color={"white"}>
           {data.descricao}
@@ -42,5 +43,7 @@ export default function CardPostagem({ data }: any) {
         </Box>
       </Box>
     </Box>
+    </Pressable>
+
   );
 }

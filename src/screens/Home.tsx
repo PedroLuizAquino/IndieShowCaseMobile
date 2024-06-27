@@ -14,37 +14,47 @@ import {
 } from "native-base";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import CardPostagem from "../components/CardPostagem/CardPostagem";
+import { useEffect, useState } from "react";
+import api from "../components/API";
+import IPostagem from "../components/Interface/Interface";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Home() {
-  const data = [
-    {
-      id: "1",
-      url: "https://picsum.photos/202",
-      name: "Nome do projeto",
-      descricao:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry",
-      usuario: "Pedro",
-      curtidas: "2",
-      comentarios: "3",
-    },
-    {
-      id: "2",
-      url: "https://picsum.photos/201",
-      name: "Nome do projeto",
-      descricao:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry",
-      usuario: "Pedro",
-      curtidas: "12",
-      comentarios: "5",
-    },
-  ];
+
+  const [postagem, setPostagem] = useState<IPostagem[]>([]);
+  const [ fotoUsuario, setFotoUsuario] = useState("");
+
+
+  useEffect(() => {
+    const fetchPostagem = async () => {
+      try {
+        const response = await api.get("/pos_postagem?order=desc");
+        setPostagem(response.data);
+      } catch (error) {
+        console.log("Erro ao buscar servicos: ", error);
+      }
+    };
+
+    fetchPostagem();
+  }, []);
+
+
+  useEffect(() => {
+    const fetchFotoUsuario = async () => {
+      try {
+        const foto = await AsyncStorage.getItem("usuarioFoto");
+        setFotoUsuario(foto);
+      } catch (error) {
+        console.error("Erro ao obter o id do cliente:", error);
+      }
+    };
+
+    fetchFotoUsuario();
+  }, []);
 
   return  (
     <View flex={1} p={5} backgroundColor={"#F4F4F4"}>
       <VStack flexDirection={"row"}>
-        <Box pt={4}>
-          <Ionicons name={"menu"} color={"#187BDC"} size={40} />
-        </Box>
         <Box pt={5} pl={5}>
           <Text color="#202020" fontSize={20}>
             IndieShowcase
@@ -53,7 +63,7 @@ export default function Home() {
         <Spacer />
         <Box>
           <Avatar
-            source={{ uri: "https://github.com/PedroLuizAquino.png" }}
+            source={{ uri: fotoUsuario || "https://github.com/GustavoTF25.png"}}
             size={"lg"}
           />
         </Box>
@@ -62,7 +72,7 @@ export default function Home() {
       <Divider mt={15} mb={10} />
       <Box mb={40}>
         <FlatList
-          data={data}
+          data={postagem}
           renderItem={({ item }) => <CardPostagem data={item} />}
           showsHorizontalScrollIndicator={false}
         />
