@@ -119,7 +119,7 @@ export default function Publicar({ navigation }) {
       descricao: descricao,
       capa: "https://github.com/PedroLuizAquino.png",
       arquivo: "E_Cvk-Q4HRU", 
-      comentarios: Math.floor(Math.random() * (12 - 1 + 1)) + 1,
+      comentarios: '0',
       curtidas: Math.floor(Math.random() * (12 - 1 + 1)) + 1,
       usuario: usuarioNome,
       usuarioId: usuarioId,
