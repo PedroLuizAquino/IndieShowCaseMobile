@@ -18,30 +18,30 @@ export default function CardPostagem({ data, navigation}: any) {
         <Image source={{ uri: data.capa }} alt="Imagem da postagem" w="100%" h={200} />
       </Box>
       <Box my={3}>
-        <Heading size={"sm"} pb={1} color={"white"}>
+        <Heading fontSize={20} size={"sm"} pb={1} color={"white"}>
           {data.titulo}
         </Heading>
-        <Text numberOfLines={2} color={"white"}>
+        <Heading fontSize={14} mt={2} numberOfLines={2} color={"white"}>
           {data.descricao}
-        </Text>
+        </Heading>
       </Box>
       <Box my={3} flexDirection={"row"} justifyContent={"space-between"}>
         <Box flexDirection={"row"}>
         <Ionicons name={"person"} color={"white"} size={20} />
-        <Text ml={2} color={"white"} numberOfLines={1}>
+        <Heading ml={2} fontSize={14} color={"white"} numberOfLines={1}>
           {data.usuario}
-        </Text>
+        </Heading>
         </Box>
         <Box flexDirection={"row"}>
           <Ionicons name={"heart"} color={"white"} size={20} />
-          <Text ml={2} color={"white"} numberOfLines={1} pr={2}>
+          <Heading fontSize={14} ml={2} color={"white"} numberOfLines={1} pr={2}>
             {data.curtidas}
-          </Text>
+          </Heading>
 
           <Ionicons name={"chatbubble-ellipses"} color={"white"} size={20} />
-          <Text ml={2} color={"white"} numberOfLines={1} pr={2}>
+          <Heading fontSize={14} ml={2} color={"white"} numberOfLines={1} pr={2}>
             {data.comentarios}
-          </Text>
+          </Heading>
         </Box>
       </Box>
     </Box>
