@@ -31,7 +31,7 @@ export default function ComentariosPostagem ({idPostagem}) {
         <>
         {comentarios.length > 0 ? (
             <Box mb={30} mt={10}>
-            <Heading color={"black"} mb={5}  fontSize={18}>Comentários</Heading>
+            <Heading color={"black"} mb={5} fontSize={18}>Comentários</Heading>
               <FlatList
               scrollEnabled = {false}
               data={comentarios}
@@ -41,7 +41,7 @@ export default function ComentariosPostagem ({idPostagem}) {
             </Box>
                   ) : (
       
-                    <Box mb={40}>
+                    <Box mb={40} mt={10}>
                     <Heading color={"black"} mb={5}  fontSize={18}>Comentários</Heading>
                     <Center>
                       <Text mt={4} fontSize={16} >Sem Comentários </Text>

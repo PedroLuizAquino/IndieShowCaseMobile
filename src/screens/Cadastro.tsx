@@ -24,10 +24,13 @@ export default function Cadastro({ navigation }) {
   const [confirmarSenha, setConfirmarSenha] = useState("");
 
   const handleCadastro = async () => {
+    if (!nome || !email || !senha || !idade || !confirmarSenha) {
+      //setMensagemErro("Todos os campos são obrigatórios.");
+      return;
+    }
+
     if (senha !== confirmarSenha) {
-      // setTipoFeedback("erro");
-      // setMensagemFeedback("As senhas não coincidem.");
-      // setMostrarFeedback(true);
+      //setMensagemErro("As senhas não coincidem.");
       return;
     }
 

@@ -1,15 +1,16 @@
-import { Avatar, Box, Button, Center, Divider, FormControl, Heading, Image, ScrollView, Slide, Spacer, Text, TextArea, VStack } from 'native-base';
+import { Avatar, Box, Button, Center, Divider, FormControl, Heading, Image, ScrollView, Slide, Spacer, Text, TextArea, VStack, View } from 'native-base';
 import { ButtonPadrao } from '../components/Buttun/ButtonPadrao';
 import { InputPadrao } from '../components/Inputs/InputPadrao';
 import { TouchableOpacity } from 'react-native';
 import { InputTextArea } from '../components/Inputs/InputTextArea';
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import api from '../components/API';
 import { launchImageLibrary } from 'react-native-image-picker';
 import * as ImagePicker from 'expo-image-picker';
 import * as DocumentPicker from 'expo-document-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useFocusEffect } from '@react-navigation/native';
 
 export default function Publicar({ navigation }) {
   const [titulo, setTitulo] = useState("");
@@ -63,45 +64,51 @@ export default function Publicar({ navigation }) {
     }
   };
 
-  useEffect(() => {
-    const fetchNomeUsuario = async () => {
-      try {
-        const idUsuario = await AsyncStorage.getItem("usuarioId");
-        setUsuarioId(idUsuario);
-      } catch (error) {
-        console.error("Erro ao obter o id do cliente:", error);
-      }
-    };
+  useFocusEffect(
+    useCallback(() => {
+      const fetchIdUsuario = async () => {
+        try {
+          const id = await AsyncStorage.getItem("usuarioId");
+          setUsuarioId(id);
+        } catch (error) {
+          console.error("Erro ao obter o id do cliente:", error);
+        }
+      };
+  
+      fetchIdUsuario();
+    }, [])
+  );
 
-    fetchNomeUsuario();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      const fetchNomeUsuario = async () => {
+        try {
+          const nomeUsuario = await AsyncStorage.getItem("usuarioNome");
+          setUsuarioNome(nomeUsuario);
+        } catch (error) {
+          console.error("Erro ao obter o id do cliente:", error);
+        }
+      };
+  
+      fetchNomeUsuario();
+    }, [])
+  );
 
-  useEffect(() => {
-    const fetchNomeUsuario = async () => {
-      try {
-        const idUsuario = await AsyncStorage.getItem("usuarioNome");
-        setUsuarioNome(idUsuario);
-      } catch (error) {
-        console.error("Erro ao obter o id do cliente:", error);
-      }
-    };
 
-    fetchNomeUsuario();
-  }, []);
-
-
-  useEffect(() => {
-    const fetchFotoUsuario = async () => {
-      try {
-        const foto = await AsyncStorage.getItem("usuarioFoto");
-        setFotoUsuario(foto);
-      } catch (error) {
-        console.error("Erro ao obter o id do cliente:", error);
-      }
-    };
-
-    fetchFotoUsuario();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      const fetchFotoUsuario = async () => {
+        try {
+          const foto = await AsyncStorage.getItem("usuarioFoto");
+          setFotoUsuario(foto);
+        } catch (error) {
+          console.error("Erro ao obter o id do cliente:", error);
+        }
+      };
+  
+      fetchFotoUsuario();
+    }, [])
+  );
 
   const handlePublicar = async () => {
 
@@ -110,8 +117,8 @@ export default function Publicar({ navigation }) {
       tag: tag,
       categoria: categoria,
       descricao: descricao,
-      capa: "",
-      arquivo: "", 
+      capa: "https://github.com/PedroLuizAquino.png",
+      arquivo: "E_Cvk-Q4HRU", 
       comentarios: Math.floor(Math.random() * (12 - 1 + 1)) + 1,
       curtidas: Math.floor(Math.random() * (12 - 1 + 1)) + 1,
       usuario: usuarioNome,
@@ -139,6 +146,9 @@ export default function Publicar({ navigation }) {
 
   }
 
+  console.log(usuarioId)
+
+  if(usuarioId){
   return (
     <ScrollView flex={1} bg={"#F4F4F4"}>
        <VStack  p={5}  flexDirection={"row"}>
@@ -221,4 +231,22 @@ export default function Publicar({ navigation }) {
       </FormControl>
     </ScrollView>
   );
+}else {
+  return(
+    <View
+    flex={1}
+    p={5}
+    backgroundColor={"#F4F4F4"}
+    alignItems={"center"}
+    justifyContent={"center"}
+  >
+      <Heading>Não possui uma conta ? </Heading>
+      <ButtonPadrao  mt={4} texto="Crie uma conta aqui " onPress={()=> navigation.navigate('Cadastro')}/>
+
+      <Heading mt={10}>Já possui uma conta ? </Heading>
+      <ButtonPadrao mt={4} texto="Entre aqui " onPress={()=> navigation.navigate('Login')}/>
+
+    </View>
+    )
+}
 }

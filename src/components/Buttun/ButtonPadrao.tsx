@@ -13,7 +13,7 @@ export function ButtonPadrao({
   texto,
   border,
   cor = '#187BCD',
-  tamanhoFonte = 12,
+  tamanhoFonte = 16,
   corDaFonte = 'white',
   ...rest
 }: IBotaoProps) {
@@ -29,11 +29,11 @@ export function ButtonPadrao({
       _pressed={{ backgroundColor: border? "#DBDBDB" : "#125C99", _text: { color: "white" } }}
     >
       <Text
-        color={corDaFonte}
-        fontSize={18}
+      color={corDaFonte}
+      fontSize={tamanhoFonte}
       >
         {texto}
-      </Text>
+        </Text>
     </Button>
   );
 }

@@ -96,7 +96,7 @@ export default function Login({ navigation }) {
       <ButtonPadrao
         mt={5}
         texto="Esqueceu a senha?"
-        tamanhoFonte={10}
+        tamanhoFonte={14}
         cor="#F4F4F4"
         corDaFonte="black"
         border

@@ -14,11 +14,13 @@ import {
 import Ionicons from "react-native-vector-icons/Ionicons";
 import CardPostagem from "../components/CardPostagem/CardPostagem";
 import { TouchableOpacity } from "react-native";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import IPostagem from "../components/Interface/IPostagem";
 import api from "../components/API";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ButtonPadrao } from "../components/Buttun/ButtonPadrao";
+import IUsuario from "../components/Interface/IUsuario";
+import { useFocusEffect } from "@react-navigation/native";
 
 
 
@@ -28,51 +30,61 @@ export default function Perfil({navigation}) {
   
   
   const [postagem, setPostagem] = useState<IPostagem[]>([]);
-  const [usuarioNome, setUsuarioNome] = useState("");
-  const [usuarioFoto, setUsuarioFoto] = useState("");
+  const [usuarioId, setUsuarioId] = useState("");
+  const [usuario, setUsuario] = useState<IUsuario | null>(null); // Estado inicial como null
 
 
+  useFocusEffect(
+    useCallback(() => {
+      const fetchNomeUsuario = async () => {
+        try {
+          const id = await AsyncStorage.getItem("usuarioId");
+          setUsuarioId(id);
+        } catch (error) {
+          console.error("Erro ao obter o id do cliente:", error);
+        }
+      };
+  
+      fetchNomeUsuario();
+    }, [])
+  );
 
+  console.log("id do usuario postagem",usuarioId)
   useEffect(() => {
-    const fetchNomeUsuario = async () => {
-      try {
-        const nome = await AsyncStorage.getItem("usuarioNome");
-        setUsuarioNome(nome);
-      } catch (error) {
-        console.error("Erro ao obter o id do cliente:", error);
-      }
-    };
+      const fetchIdUsuario = async () => {
+        try {
+          const response = await api.get(`/usu_usuarios?&id=${usuarioId}`);
+          setUsuario(response.data[0]);
+        } catch (error) {
+          console.log("Erro ao buscar servicos: ", error);
+        }
+      };
+  
+      fetchIdUsuario();
 
-    fetchNomeUsuario();
-  }, []);
+    }, [usuarioId]);
 
-  useEffect(() => {
-    const fetchFotoUsuario = async () => {
-      try {
-        const foto = await AsyncStorage.getItem("usuarioFoto");
-        setUsuarioFoto(foto);
-      } catch (error) {
-        console.error("Erro ao obter o id do cliente:", error);
-      }
-    };
+    console.log('usuario',usuario)
 
-    fetchFotoUsuario();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      const fetchPostagem = async () => {
+        try {
+          const response = await api.get(`/pos_postagem?order=desc&usuario=${usuario.nome}`);
+          setPostagem(response.data);
+        } catch (error) {
+          console.log("Erro ao buscar servicos: ", error);
+        }
+      };
+  
+      fetchPostagem();
+    }, [usuario])
+  );
 
 
-  useEffect(() => {
-    const fetchServicos = async () => {
-      try {
-        const response = await api.get(`/pos_postagem?order=desc&usuario=${usuarioNome}`);
-        setPostagem(response.data);
-      } catch (error) {
-        console.log("Erro ao buscar servicos: ", error);
-      }
-    };
-
-    fetchServicos();
-  }, []);
-
+  console.log(usuario)
+  console.log("usuarioId",usuarioId)
+  if(usuario){
   return (
     <ScrollView flex={1} p={5} backgroundColor={"#F4F4F4"}>
       <VStack flexDirection={"row"}>
@@ -91,16 +103,16 @@ export default function Perfil({navigation}) {
           }}
         >
         <Box>
-          <Ionicons name={"settings"} color={"#187BDC"} size={40} />
+          <Ionicons name={"log-out"} color={"#f94449"} size={40} />
         </Box>
         </TouchableOpacity>
  
       </VStack>
       <VStack flexDirection={'column'}  alignItems={'center'} mb={10} mt={10}>
         <Box>
-        {usuarioFoto? (
+        {usuario.foto? (
               <Avatar
-              source={{ uri: usuarioFoto }}
+              source={{ uri: usuario.foto }}
               size={"2xl"}
             />
           ): (
@@ -111,7 +123,7 @@ export default function Perfil({navigation}) {
           )}
         </Box>
         <Box mt={2}>
-          <Text fontSize={16}>{usuarioNome}</Text>
+          <Text fontSize={16}>{usuario.nome}</Text>
         </Box>
         <Box mt={3}>
           <Text fontStyle={'italic'}>"{biografia}"</Text>
@@ -139,4 +151,22 @@ export default function Perfil({navigation}) {
             )}
     </ScrollView> 
   );
+  } else {
+    return(
+    <View
+    flex={1}
+    p={5}
+    backgroundColor={"#F4F4F4"}
+    alignItems={"center"}
+    justifyContent={"center"}
+  >
+      <Heading>Não possui uma conta ? </Heading>
+      <ButtonPadrao  mt={4} texto="Crie uma conta aqui " onPress={()=> navigation.navigate('Cadastro')}/>
+
+      <Heading mt={10}>Já possui uma conta ? </Heading>
+      <ButtonPadrao mt={4} texto="Entre aqui " onPress={()=> navigation.navigate('Login')}/>
+
+    </View>
+    )
+  }
 }

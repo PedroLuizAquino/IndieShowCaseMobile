@@ -17,78 +17,130 @@
     {
       "id": "2a98",
       "nome": "app teste",
-      "email": "aap.app.com",
+      "email": "app.app.com",
       "idade": "12",
+      "senha": "123",
+      "foto": "https://github.com/GustavoTF25.png"
+    },
+    {
+      "id": "2a100",
+      "nome": "Andre",
+      "email": "andre.andre.com",
+      "idade": "12",
+      "senha": "123",
+      "foto": "https://github.com/andredsantos82.png"
+    },
+    {
+      "id": "1a57",
+      "nome": "VideoTeste",
+      "email": "video.teste.com",
+      "idade": "20",
+      "senha": "123",
+      "foto": "https://github.com/GustavoTF25.png"
+    },
+    {
+      "id": "881a",
+      "nome": "Videoteste2",
+      "email": "video2.teste.com",
+      "idade": "20",
+      "senha": "123",
+      "foto": "https://github.com/GustavoTF25.png"
+    },
+    {
+      "id": "f1ce",
+      "nome": "Video Teste",
+      "email": "video.teste.teste",
+      "idade": "20",
+      "senha": "123",
+      "foto": "https://github.com/GustavoTF25.png"
+    },
+    {
+      "id": "2da7",
+      "nome": "Gustavo",
+      "email": "gustavo.gustavo.com",
+      "idade": "20",
       "senha": "123",
       "foto": "https://github.com/GustavoTF25.png"
     }
   ],
   "pos_postagem": [
     {
-      "titulo": 1,
+      "titulo": "Projeto da Faculdade Rammina ",
       "tag": "Corte de Cabelo",
       "categoria": 25,
-      "descricao": "",
-      "capa": "https://picsum.photos/204",
-      "arquivo": "",
+      "descricao": "Projeito feito na Unreal Engine 5.32",
+      "capa": "https://picsum.photos/206",
+      "arquivo": "qm-MC8Y0_b8",
       "id": "5bb0",
-      "comentarios": 5,
+      "comentarios": 0,
       "curtidas": 6,
-      "usuario": "Pedro",
-      "usuarioId": "1"
+      "usuario": "Aureo",
+      "usuarioId": "2"
     },
     {
       "id": "fc4c",
-      "titulo": "titulo de teste",
+      "titulo": "video do SGPizza",
       "tag": "mobilo teste",
       "categoria": "Jogos",
-      "descricao": "teste do mobile",
-      "capa": "https://picsum.photos/200",
-      "arquivo": "",
-      "comentarios": 5,
+      "descricao": "video do SGPizza em ingles",
+      "capa": "https://picsum.photos/204",
+      "arquivo": "NE7EDakS6YI",
+      "comentarios": 1,
       "curtidas": 6,
       "usuario": "Pedro",
       "usuarioId": "1"
     },
     {
       "id": "1",
-      "titulo": "Nome do projeto",
+      "titulo": "Demo ShooterRank ",
       "tag": "mobilo teste",
       "categoria": "Jogos",
-      "descricao": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry",
+      "descricao": "Projeito feito na Unreal Engine 5.32",
       "capa": "https://picsum.photos/202",
-      "arquivo": "",
-      "comentarios": "3",
+      "arquivo": "VwsM-jhMrrc",
+      "comentarios": "0",
       "curtidas": "2",
-      "usuario": "Pedro",
-      "usuarioId": "1"
-
+      "usuario": "Andre",
+      "usuarioId": "2a100"
     },
     {
       "id": "2",
-      "titulo": "Nome do projeto",
+      "titulo": "Batalhas no baldurs gate 3",
       "tag": "mobilo teste",
       "categoria": "Jogos",
-      "descricao": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry",
+      "descricao": " Simplesmente o combate mais difícil que eu já tive em baldur's gate 3 ",
       "capa": "https://picsum.photos/201",
-      "arquivo": "",
+      "arquivo": "lXAv43bmaRg",
       "comentarios": "2",
-      "curtidas": "12",
+      "curtidas": "4",
       "usuario": "Pedro",
       "usuarioId": "1"
     },
     {
       "id": "70e7",
-      "titulo": "teste postagem aureo",
+      "titulo": "JogoFaculdade ",
       "tag": "sim",
       "categoria": "jogo",
-      "descricao": "teste da postagem feita no perfil do aureo pq sim",
-      "capa": "https://picsum.photos/201",
-      "arquivo": "",
-      "comentarios": 11,
-      "curtidas": 12,
-      "usuario":"Pedro",
+      "descricao": "jogo criado na unreal engine 5",
+      "capa": "https://picsum.photos/205",
+      "arquivo": "FUwQGPo_aPI",
+      "comentarios": 4,
+      "curtidas": 2,
+      "usuario": "Pedro",
       "usuarioId": "1"
+    },
+    {
+      "id": "0e96",
+      "titulo": "video de teste",
+      "tag": "testando",
+      "categoria": "video",
+      "descricao": "um video de teste",
+      "capa": "https://github.com/PedroLuizAquino.png",
+      "arquivo": "E_Cvk-Q4HRU",
+      "comentarios": 5,
+      "curtidas": 11,
+      "usuario": "Gustavo",
+      "usuarioId": "2da7"
     }
   ],
   "com_comentarios": [
@@ -114,11 +166,32 @@
       "idPostagem": "70e7"
     },
     {
-      "id": "3",
-      "nome": "Pedro",
-      "comentario": "plin plin plon plin plin plon plin plon",
-      "foto": "https://github.com/PedroLuizAquino.png",
+      "id": "4",
+      "nome": "Aureo",
+      "comentario": "Yeah Video muito bom",
+      "foto": "https://github.com/Nuevrokiv.png",
       "idPostagem": "70e7"
+    },
+    {
+      "id": "5",
+      "nome": "Andre",
+      "comentario": "plin plon",
+      "foto": "https://github.com/andredsantos82.png",
+      "idPostagem": "2"
+    },
+    {
+      "id": "6",
+      "nome": "Aureo",
+      "comentario": "Que sofrimento",
+      "foto": "https://github.com/Nuevrokiv.png",
+      "idPostagem": "2"
+    },
+    {
+      "id": "6",
+      "nome": "Aureo",
+      "comentario": "Saudades do SGPizza",
+      "foto": "https://github.com/Nuevrokiv.png",
+      "idPostagem": "fc4c"
     }
   ]
 }

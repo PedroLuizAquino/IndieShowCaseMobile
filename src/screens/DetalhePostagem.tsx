@@ -11,6 +11,8 @@ import * as ScreenOrientation from 'expo-screen-orientation';
 import { DetalhesPostagemUsuario } from '../components/DetalhesPostagemUsuario/DetalhesPostagemUsuario';
 import { ButtonPadrao } from '../components/Buttun/ButtonPadrao';
 import ComentariosPostagem from '../components/ComentariosPostagem/ComentariosPostagem';
+import Ionicons from "react-native-vector-icons/Ionicons";
+
 
 export default function DetalhePostagem({ route }) {
   const { id } = route.params;
@@ -31,7 +33,7 @@ export default function DetalhePostagem({ route }) {
 
 
     fetchFotoUsuario();
-  }, []);
+  });
 
   useEffect(() => {
     const fetchPostagem = async () => {
@@ -76,10 +78,7 @@ export default function DetalhePostagem({ route }) {
               size={"lg"}
             />
           ): (
-          <Avatar
-            source={{ uri: "https://github.com/GustavoTF25.png" }}
-            size={"lg"}
-          />
+          <></>
           )}
         </Box>
       </VStack>
@@ -96,7 +95,7 @@ export default function DetalhePostagem({ route }) {
         /> */}
         <Box>
         <YoutubeIframe
-        videoId='scPBmrzdD0g'
+        videoId={postagem.arquivo ? postagem.arquivo : 'scPBmrzdD0g'}
         height={ videoReady? 200 : 100}
         onReady={() =>  setVideoReady(true)}
         onFullScreenChange={onFullScreenChange}
@@ -114,7 +113,6 @@ export default function DetalhePostagem({ route }) {
             <ButtonPadrao ml={5} texto='Baixar'/>
             </Box>
         </VStack>
-
         <ComentariosPostagem idPostagem={postagem.id}/>
         
       </Box>

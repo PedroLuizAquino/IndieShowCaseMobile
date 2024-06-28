@@ -1,9 +1,10 @@
 import { Box, FlatList, Heading, Input, ScrollView, Text, VStack, View } from 'native-base';
 import { InputPesquisa } from '../components/Inputs/InputPesquisa';
 import CardPostagem from '../components/CardPostagem/CardPostagem';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import api from '../components/API';
 import IPostagem from '../components/Interface/IPostagem';
+import { useFocusEffect } from '@react-navigation/native';
 
 
 export default function Pesquisar({navigation}) {
@@ -12,18 +13,20 @@ export default function Pesquisar({navigation}) {
   const [postagem, setPostagem] = useState<IPostagem[]>([]);
 
 
-  useEffect(() => {
-    const fetchServicos = async () => {
-      try {
-        const response = await api.get("/pos_postagem?order=desc");
-        setPostagem(response.data);
-      } catch (error) {
-        console.log("Erro ao buscar servicos: ", error);
-      }
-    };
-
-    fetchServicos();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      const fetchPostagem = async () => {
+        try {
+          const response = await api.get("/pos_postagem?order=desc");
+          setPostagem(response.data);
+        } catch (error) {
+          console.log("Erro ao buscar servicos: ", error);
+        }
+      };
+  
+      fetchPostagem();
+    }, [])
+  );
 
   const handleSearch = (query) => {
     setSearchQuery(query);

@@ -14,10 +14,11 @@ import {
 } from "native-base";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import CardPostagem from "../components/CardPostagem/CardPostagem";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import api from "../components/API";
 import IPostagem from "../components/Interface/IPostagem";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useFocusEffect } from "@react-navigation/native";
 
 export default function Home({navigation}) {
 
@@ -25,21 +26,24 @@ export default function Home({navigation}) {
   const [ fotoUsuario, setFotoUsuario] = useState("");
 
 
-  useEffect(() => {
-    const fetchPostagem = async () => {
-      try {
-        const response = await api.get("/pos_postagem?order=desc");
-        setPostagem(response.data);
-      } catch (error) {
-        console.log("Erro ao buscar servicos: ", error);
-      }
-    };
+  useFocusEffect(
+    useCallback(() => {
+      const fetchPostagem = async () => {
+        try {
+          const response = await api.get("/pos_postagem?order=desc");
+          setPostagem(response.data);
+        } catch (error) {
+          console.log("Erro ao buscar servicos: ", error);
+        }
+      };
+  
+      fetchPostagem();
+    }, [])
+  );
 
-    fetchPostagem();
-  }, []);
-
-
-  useEffect(() => {
+  
+useFocusEffect(
+  useCallback(() => {
     const fetchFotoUsuario = async () => {
       try {
         const foto = await AsyncStorage.getItem("usuarioFoto");
@@ -50,8 +54,10 @@ export default function Home({navigation}) {
     };
 
     fetchFotoUsuario();
-  }, []);
+  }, [])
+);
 
+  console.log(fotoUsuario)
   return  (
     <View flex={1} p={5} backgroundColor={"#F4F4F4"}>
       <VStack flexDirection={"row"}>
@@ -68,10 +74,7 @@ export default function Home({navigation}) {
               size={"lg"}
             />
           ): (
-          <Avatar
-            source={{ uri: 'https://github.com/GustavoTF25.png' }}
-            size={"lg"}
-          />
+          <></>
           )}
         </Box>
       </VStack>
