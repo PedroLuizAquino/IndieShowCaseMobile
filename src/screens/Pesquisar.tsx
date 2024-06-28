@@ -3,10 +3,10 @@ import { InputPesquisa } from '../components/Inputs/InputPesquisa';
 import CardPostagem from '../components/CardPostagem/CardPostagem';
 import { useEffect, useState } from 'react';
 import api from '../components/API';
-import IPostagem from '../components/Interface/Interface';
+import IPostagem from '../components/Interface/IPostagem';
 
 
-export default function Pesquisar() {
+export default function Pesquisar({navigation}) {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredData, setFilteredData] = useState<IPostagem[]>([]);
   const [postagem, setPostagem] = useState<IPostagem[]>([]);
@@ -47,7 +47,7 @@ export default function Pesquisar() {
         <Box flex={2} p={5} mb={20}>
           <FlatList
             data={filteredData}
-            renderItem={({ item }) => <CardPostagem data={item} />}
+            renderItem={({ item }) => <CardPostagem data={item} navigation={navigation}/>}
             showsHorizontalScrollIndicator={false}
           />
         </Box>

@@ -15,7 +15,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import CardPostagem from "../components/CardPostagem/CardPostagem";
 import { TouchableOpacity } from "react-native";
 import { useEffect, useState } from "react";
-import IPostagem from "../components/Interface/Interface";
+import IPostagem from "../components/Interface/IPostagem";
 import api from "../components/API";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ButtonPadrao } from "../components/Buttun/ButtonPadrao";
@@ -98,10 +98,17 @@ export default function Perfil({navigation}) {
       </VStack>
       <VStack flexDirection={'column'}  alignItems={'center'} mb={10} mt={10}>
         <Box>
+        {usuarioFoto? (
+              <Avatar
+              source={{ uri: usuarioFoto }}
+              size={"2xl"}
+            />
+          ): (
           <Avatar
-            source={{ uri: usuarioFoto || "https://github.com/GustavoTF25.png" }}
+            source={{ uri: "https://github.com/GustavoTF25.png" }}
             size={"2xl"}
           />
+          )}
         </Box>
         <Box mt={2}>
           <Text fontSize={16}>{usuarioNome}</Text>
@@ -116,7 +123,7 @@ export default function Perfil({navigation}) {
         <FlatList
         scrollEnabled = {false}
         data={postagem}
-        renderItem={({item}) => <CardPostagem data={item}/>}
+        renderItem={({item}) => <CardPostagem data={item} navigation={navigation}/>}
         showsHorizontalScrollIndicator={false}
         />
       </Box>

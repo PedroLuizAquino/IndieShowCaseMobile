@@ -34,7 +34,8 @@
       "id": "5bb0",
       "comentarios": 5,
       "curtidas": 6,
-      "usuario": "Pedro"
+      "usuario": "Pedro",
+      "usuarioId": "1"
     },
     {
       "id": "fc4c",
@@ -46,7 +47,8 @@
       "arquivo": "",
       "comentarios": 5,
       "curtidas": 6,
-      "usuario": "Pedro"
+      "usuario": "Pedro",
+      "usuarioId": "1"
     },
     {
       "id": "1",
@@ -58,19 +60,65 @@
       "arquivo": "",
       "comentarios": "3",
       "curtidas": "2",
-      "usuario": "Pedro"
+      "usuario": "Pedro",
+      "usuarioId": "1"
+
     },
     {
       "id": "2",
       "titulo": "Nome do projeto",
       "tag": "mobilo teste",
       "categoria": "Jogos",
-      "descricao":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry",
+      "descricao": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry",
       "capa": "https://picsum.photos/201",
       "arquivo": "",
       "comentarios": "2",
       "curtidas": "12",
-      "usuario": "Pedro"
+      "usuario": "Pedro",
+      "usuarioId": "1"
+    },
+    {
+      "id": "70e7",
+      "titulo": "teste postagem aureo",
+      "tag": "sim",
+      "categoria": "jogo",
+      "descricao": "teste da postagem feita no perfil do aureo pq sim",
+      "capa": "https://picsum.photos/201",
+      "arquivo": "",
+      "comentarios": 11,
+      "curtidas": 12,
+      "usuario":"Pedro",
+      "usuarioId": "1"
+    }
+  ],
+  "com_comentarios": [
+    {
+      "id": "1",
+      "nome": "Pedro",
+      "comentario": "plin plin plon",
+      "foto": "https://github.com/PedroLuizAquino.png",
+      "idPostagem": "70e7"
+    },
+    {
+      "id": "2",
+      "nome": "Pedro",
+      "comentario": "plin plin plon",
+      "foto": "https://github.com/PedroLuizAquino.png",
+      "idPostagem": "70e7"
+    },
+    {
+      "id": "3",
+      "nome": "Pedro",
+      "comentario": "plin plon",
+      "foto": "https://github.com/PedroLuizAquino.png",
+      "idPostagem": "70e7"
+    },
+    {
+      "id": "3",
+      "nome": "Pedro",
+      "comentario": "plin plin plon plin plin plon plin plon",
+      "foto": "https://github.com/PedroLuizAquino.png",
+      "idPostagem": "70e7"
     }
   ]
 }

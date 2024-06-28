@@ -39,6 +39,12 @@
             "./src/assets/fonts/RNZ/RNSSanz-Normal.otf"
           ]
         }
+      ],
+      [
+        "expo-video",
+        {
+          "extensions": ["mp4", "mov"]
+        }
       ]
     ]
   }

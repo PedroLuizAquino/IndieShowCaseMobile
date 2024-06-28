@@ -16,10 +16,10 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import CardPostagem from "../components/CardPostagem/CardPostagem";
 import { useEffect, useState } from "react";
 import api from "../components/API";
-import IPostagem from "../components/Interface/Interface";
+import IPostagem from "../components/Interface/IPostagem";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export default function Home() {
+export default function Home({navigation}) {
 
   const [postagem, setPostagem] = useState<IPostagem[]>([]);
   const [ fotoUsuario, setFotoUsuario] = useState("");
@@ -62,10 +62,17 @@ export default function Home() {
         </Box>
         <Spacer />
         <Box>
+          {fotoUsuario? (
+              <Avatar
+              source={{ uri: fotoUsuario }}
+              size={"lg"}
+            />
+          ): (
           <Avatar
-            source={{ uri: fotoUsuario || "https://github.com/GustavoTF25.png"}}
+            source={{ uri: 'https://github.com/GustavoTF25.png' }}
             size={"lg"}
           />
+          )}
         </Box>
       </VStack>
 
@@ -73,7 +80,7 @@ export default function Home() {
       <Box mb={40}>
         <FlatList
           data={postagem}
-          renderItem={({ item }) => <CardPostagem data={item} />}
+          renderItem={({ item }) => <CardPostagem data={item} navigation={navigation} />}
           showsHorizontalScrollIndicator={false}
         />
       </Box>

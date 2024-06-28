@@ -1,9 +1,11 @@
 import { ScrollView, Text, FlatList, Box, Image, Heading, Pressable } from "native-base";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
-export default function CardPostagem({ data}: any, {navigation}) {
+
+
+export default function CardPostagem({ data, navigation}: any) {
   return (
-    <Pressable isPressed >
+    <Pressable onPress={() => navigation.navigate('DetalhePostagem', { id: data.id })}>    
     <Box
       flex={1}
       flexDirection={"column"}

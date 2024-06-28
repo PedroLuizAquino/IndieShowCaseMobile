@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Center, Divider, FormControl, Heading, Image, ScrollView, Spacer, Text, TextArea, VStack } from 'native-base';
+import { Avatar, Box, Button, Center, Divider, FormControl, Heading, Image, ScrollView, Slide, Spacer, Text, TextArea, VStack } from 'native-base';
 import { ButtonPadrao } from '../components/Buttun/ButtonPadrao';
 import { InputPadrao } from '../components/Inputs/InputPadrao';
 import { TouchableOpacity } from 'react-native';
@@ -19,6 +19,11 @@ export default function Publicar({ navigation }) {
   const [capa, setCapa] = useState(null);
   const [arquivo, setArquivo] = useState(null);
   const [ fotoUsuario, setFotoUsuario] = useState("");
+  const [ usuarioId, setUsuarioId] = useState("");
+  const [ usuarioNome, setUsuarioNome] = useState("");
+  const [isOpenTop, setIsOpenTop] = useState(false);
+
+
 
 
   const handleSelectCapa = async () => {
@@ -58,6 +63,32 @@ export default function Publicar({ navigation }) {
     }
   };
 
+  useEffect(() => {
+    const fetchNomeUsuario = async () => {
+      try {
+        const idUsuario = await AsyncStorage.getItem("usuarioId");
+        setUsuarioId(idUsuario);
+      } catch (error) {
+        console.error("Erro ao obter o id do cliente:", error);
+      }
+    };
+
+    fetchNomeUsuario();
+  }, []);
+
+  useEffect(() => {
+    const fetchNomeUsuario = async () => {
+      try {
+        const idUsuario = await AsyncStorage.getItem("usuarioNome");
+        setUsuarioNome(idUsuario);
+      } catch (error) {
+        console.error("Erro ao obter o id do cliente:", error);
+      }
+    };
+
+    fetchNomeUsuario();
+  }, []);
+
 
   useEffect(() => {
     const fetchFotoUsuario = async () => {
@@ -82,7 +113,10 @@ export default function Publicar({ navigation }) {
       capa: "",
       arquivo: "", 
       comentarios: Math.floor(Math.random() * (12 - 1 + 1)) + 1,
-      curtidas: Math.floor(Math.random() * (12 - 1 + 1)) + 1
+      curtidas: Math.floor(Math.random() * (12 - 1 + 1)) + 1,
+      usuario: usuarioNome,
+      usuarioId: usuarioId,
+
     }
 
     try{
@@ -90,6 +124,7 @@ export default function Publicar({ navigation }) {
 
       if(publicarRespose.status === 201){
         //postagem publicada com sucesso
+        setIsOpenTop(true)
         navigation.navigate('Home');
       }else{
         console.error("Erro ao fazer a postagem: ", publicarRespose.data);
@@ -114,10 +149,17 @@ export default function Publicar({ navigation }) {
         </Box>
         <Spacer />
         <Box>
+        {fotoUsuario? (
+              <Avatar
+              source={{ uri: fotoUsuario }}
+              size={"lg"}
+            />
+          ): (
           <Avatar
-            source={{ uri: fotoUsuario || "https://github.com/GustavoTF25.png"}}
+            source={{ uri: "https://github.com/GustavoTF25.png" }}
             size={"lg"}
           />
+          )}
         </Box>
       </VStack>
       <Box mt={"-25px"} p={5}>
