@@ -47,7 +47,7 @@ export function DetalhesPostagemUsuario ({usuarioId})  {
 }
 else{
     return(
-        <Text mt={10} color={'black'}>Carregando...</Text> 
+        <Heading mt={10} color={'black'}>Carregando...</Heading> 
     )
 }
 

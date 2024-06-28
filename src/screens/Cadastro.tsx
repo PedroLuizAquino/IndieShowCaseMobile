@@ -148,18 +148,18 @@ export default function Cadastro({ navigation }) {
         mt={6}
         mb={12}
       >
-        <Text color={"black"} underline>
+        <Heading color={"black"} underline>
           Já possui conta?{" "}
-        </Text>
+        </Heading>
         <TouchableOpacity
           onPress={() => {
             navigation.navigate("Login");
           }}
         >
-          <Text color={"blue.500"} underline>
+          <Heading color={"blue.500"} underline>
             {" "}
             Entre aqui.
-          </Text>
+          </Heading>
         </TouchableOpacity>
       </Box>
     </View>

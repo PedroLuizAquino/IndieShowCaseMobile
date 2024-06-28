@@ -153,9 +153,9 @@ export default function Publicar({ navigation }) {
     <ScrollView flex={1} bg={"#F4F4F4"}>
        <VStack  p={5}  flexDirection={"row"}>
         <Box pt={5} pl={5}>
-          <Text color="#202020" fontSize={20}>
+          <Heading color="#202020" fontSize={20}>
             IndieShowcase
-          </Text>
+          </Heading>
         </Box>
         <Spacer />
         <Box>

@@ -112,18 +112,18 @@ export default function Login({ navigation }) {
         mt={6}
         mb={12}
       >
-        <Text color={"black"} underline>
+        <Heading color={"black"} underline>
           Não tem uma conta?{" "}
-        </Text>
+        </Heading>
         <TouchableOpacity
           onPress={() => {
             navigation.navigate("Cadastro");
           }}
         >
-          <Text color={"blue.500"} underline>
+          <Heading color={"blue.500"} underline>
             {" "}
             Inscreva-se
-          </Text>
+          </Heading>
         </TouchableOpacity>
       </Box>
     </View>

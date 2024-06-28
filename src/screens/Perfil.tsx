@@ -89,9 +89,9 @@ export default function Perfil({navigation}) {
     <ScrollView flex={1} p={5} backgroundColor={"#F4F4F4"}>
       <VStack flexDirection={"row"}>
       <Box  pl={5}>
-          <Text color="#202020" fontSize={20}>
+          <Heading color="#202020" fontSize={20}>
             IndieShowcase
-          </Text>
+          </Heading>
         </Box>
         <Spacer />
       <TouchableOpacity
@@ -123,10 +123,10 @@ export default function Perfil({navigation}) {
           )}
         </Box>
         <Box mt={2}>
-          <Text fontSize={16}>{usuario.nome}</Text>
+          <Heading fontSize={16}>{usuario.nome}</Heading>
         </Box>
         <Box mt={3}>
-          <Text fontStyle={'italic'}>"{biografia}"</Text>
+          <Heading fontStyle={'italic'}>"{biografia}"</Heading>
         </Box>
       </VStack>
       {postagem.length > 0 ? (
@@ -144,7 +144,7 @@ export default function Perfil({navigation}) {
               <Box mb={40}>
               <Heading color={"black"} mb={5}  fontSize={18}>Minhas Postagens</Heading>
               <Center>
-                <Text mt={4} fontSize={16} >Nenhuma Postagem encontrada </Text>
+                <Heading mt={4} fontSize={16} >Nenhuma Postagem encontrada </Heading>
                 <ButtonPadrao mt={4} texto="Criar Postagem" onPress={() => navigation.navigate("Publicar")}/>
               </Center>
               </Box>

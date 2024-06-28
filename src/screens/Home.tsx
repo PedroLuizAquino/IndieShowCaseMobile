@@ -62,9 +62,9 @@ useFocusEffect(
     <View flex={1} p={5} backgroundColor={"#F4F4F4"}>
       <VStack flexDirection={"row"}>
         <Box pt={5} pl={5}>
-          <Text color="#202020" fontSize={20}>
+          <Heading color="#202020" fontSize={20}>
             IndieShowcase
-          </Text>
+          </Heading>
         </Box>
         <Spacer />
         <Box>

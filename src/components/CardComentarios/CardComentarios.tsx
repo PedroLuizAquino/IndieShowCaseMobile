@@ -29,7 +29,7 @@ export default function CardComentarios ({PostagemComentarios}: any) {
             </Box>
             </VStack>
             <Box ml={20} mt={'-6'} mb={6}>
-                <Text fontSize={16}>{PostagemComentarios.comentario}</Text>
+                <Heading fontSize={14}>{PostagemComentarios.comentario}</Heading>
             </Box>
             </>
     )

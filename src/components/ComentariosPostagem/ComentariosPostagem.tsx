@@ -44,7 +44,7 @@ export default function ComentariosPostagem ({idPostagem}) {
                     <Box mb={40} mt={10}>
                     <Heading color={"black"} mb={5}  fontSize={18}>Comentários</Heading>
                     <Center>
-                      <Text mt={4} fontSize={16} >Sem Comentários </Text>
+                      <Heading mt={4} fontSize={16} >Sem Comentários </Heading>
                     </Center>
                     </Box>
                   )}

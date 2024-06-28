@@ -66,9 +66,9 @@ export default function DetalhePostagem({ route }) {
     <ScrollView flex={1} p={5} backgroundColor={"#F4F4F4"}>
       <VStack flexDirection={"row"}>
         <Box pt={5} pl={5}>
-          <Text color="#202020" fontSize={20}>
+          <Heading color="#202020" fontSize={20}>
             IndieShowcase
-          </Text>
+          </Heading>
         </Box>
         <Spacer />
         <Box>
@@ -121,7 +121,7 @@ export default function DetalhePostagem({ route }) {
   );
 }else {
     return (
-        <Text color={'black'}>Carregando...</Text> 
+        <Heading color={'black'}>Carregando...</Heading> 
     )
 }
 }
